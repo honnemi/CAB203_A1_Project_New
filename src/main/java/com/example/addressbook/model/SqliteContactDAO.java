@@ -18,24 +18,6 @@ public class SqliteContactDAO implements IContactDAO {
         connection = SqliteConnection.getInstance();
         createTable();
         // Used for testing, to be removed later
-        insertSampleData();
-    }
-
-    private void insertSampleData() {
-        try {
-            // Clear before inserting
-            Statement clearStatement = connection.createStatement();
-            String clearQuery = "DELETE FROM contacts";
-            clearStatement.execute(clearQuery);
-            Statement insertStatement = connection.createStatement();
-            String insertQuery = "INSERT INTO contacts (firstName, lastName, phone, email) VALUES "
-                    + "('John', 'Doe', '0423423423', 'johndoe@example.com'),"
-                    + "('Jane', 'Doe', '0423423424', 'janedoe@example.com'),"
-                    + "('Jay', 'Doe', '0423423425', 'jaydoe@example.com')";
-            insertStatement.execute(insertQuery);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void createTable() {
@@ -64,6 +46,11 @@ public class SqliteContactDAO implements IContactDAO {
             statement.setString(3, contact.getPhone());
             statement.setString(4, contact.getEmail());
             statement.executeUpdate();
+            // Set the id of the new contact
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                contact.setId(generatedKeys.getInt(1));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
