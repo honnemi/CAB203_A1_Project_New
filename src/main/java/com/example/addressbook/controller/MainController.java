@@ -1,5 +1,8 @@
-package com.example.addressbook;
+package com.example.addressbook.controller;
 
+import com.example.addressbook.Contact;
+import com.example.addressbook.IContactDAO;
+import com.example.addressbook.MockContactDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
