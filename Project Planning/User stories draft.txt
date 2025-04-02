@@ -1,0 +1,24 @@
+User stories
+
+- As a user, I want to be able to log in with a username and password, so that I can access all my quizzes securely from my account.
+- I am a user that wants to upload study documents to the AI tutor so I can quiz myself on the area of study
+- As a user, I want to be able to sign up for an account, so that I can save my quizzes and progress and access them on multiple devices.
+- As a user, I want to be able to change my password to strengthen my account’s security.
+- Quiz difficulty selection
+- As a user, I want to be able to choose to automatically log-in to my account on my main device, so I can save time not having to do it every time.
+- As a user I want to be able to check the progress of my learning so I can compare.
+- I would like to view my past quizzes, and AI tutoring chats, so I can review areas I am weak in before my exam.
+- As a user, I want to be able to receive suggestions on what quizzes to retake/areas to improve on, so I know what topics/questions to practice based on my past performance.
+- As a user I want to be able to get personalised feedback on the areas I went wrong so I can learn from them.
+- As a user I want to be able to choose the topics I wanted to be tested on so I can niche down my learning.
+- As a user, I want to be able to chat with the AI directly to get immediate answers on questions I have about the content, so that I can learn.
+- As a user, I want be able to view and retake past quizzes as a way to revise content and track my own progress.
+- As a user I want to be able to share my high scores and progress with my friends on social media so I can feel rewarded.
+- As a user, I want to be able to log my upcoming exams in a calendar, so that I prioritize what to study for.
+- As a user, I would like to have different ‘tabs', so I can have different chats and quizzes for all of my subjects.
+- As a user, I want a GUI with different windows for each feature so that I can easily navigate and use the application.
+- As a user, I want to be able to customize the look of my quizzes (such as the name, thumbnail, quiz length, etc.), so that I can better organize my studies.
+- As a user, I want to be able to see the answers for each question after I finish the quiz, so that I can review where I went wrong.
+- As a user, I want the AI to summarize the content I have uploaded, so that I can save myself time and effort creating my own quiz.
+- As a user, I want to take tests under time constraints to simulate exam conditions.
+- As a user, I would like to compare my test results after completing one to the results of the most recently completed tests.
