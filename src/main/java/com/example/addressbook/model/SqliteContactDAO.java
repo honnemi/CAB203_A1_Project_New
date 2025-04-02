@@ -5,7 +5,10 @@ import com.example.addressbook.model.IContactDAO;
 import com.example.addressbook.model.SqliteConnection;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SqliteContactDAO implements IContactDAO {
@@ -54,28 +57,86 @@ public class SqliteContactDAO implements IContactDAO {
 
     @Override
     public void addContact(Contact contact) {
-
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email) VALUES (?, ?, ?, ?)");
+            statement.setString(1, contact.getFirstName());
+            statement.setString(2, contact.getLastName());
+            statement.setString(3, contact.getPhone());
+            statement.setString(4, contact.getEmail());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateContact(Contact contact) {
-
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE contacts SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE id = ?");
+            statement.setString(1, contact.getFirstName());
+            statement.setString(2, contact.getLastName());
+            statement.setString(3, contact.getPhone());
+            statement.setString(4, contact.getEmail());
+            statement.setInt(5, contact.getId());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteContact(Contact contact) {
-
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM contacts WHERE id = ?");
+            statement.setInt(1, contact.getId());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Contact getContact(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM contacts WHERE id = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String phone = resultSet.getString("phone");
+                String email = resultSet.getString("email");
+                Contact contact = new Contact(firstName, lastName, phone, email);
+                contact.setId(id);
+                return contact;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public List<Contact> getAllContacts() {
-        return List.of();
+        List<Contact> contacts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM contacts";
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String phone = resultSet.getString("phone");
+                String email = resultSet.getString("email");
+                Contact contact = new Contact(firstName, lastName, phone, email);
+                contact.setId(id);
+                contacts.add(contact);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return contacts;
     }
-
     // ... other methods
 }
