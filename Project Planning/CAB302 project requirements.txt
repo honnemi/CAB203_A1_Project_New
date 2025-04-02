@@ -1,0 +1,26 @@
+CAB302 project requirements
+
+Project description:
+An AI-powered tutor application that creates quizzes based on the provided study material. The application provides personalised feedback based on performance and tracks the student's progress.
+
+
+From task requirements:
+- GUI with windows based on JavaFX
+- Authentication system to sign up/sign in
+- Persistency system to store/retrieve/update user data
+
+From project idea:
+- Quiz generation based on provided study material
+- Progress tracking and performance analysis
+- Rating system out of 10
+- Personalised feedback and recommendations
+- Difficulty settings
+- Topic selection
+- Upload documents to train the AI tutor
+
+Others:
+- AI chat feature
+- Store past quizzes to be viewed or taken again
+- Dynamic difficulty setting - difficulty changes during quiz based on performance
+- Text to speech for accessibility
+- API integration with multiple endpoints
