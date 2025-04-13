@@ -48,7 +48,7 @@ public class QuizQuestion {
         }
     }
 
-    public int answersCount() {
+    public int getAnswersCount() {
         return answers.size();
     }
 }

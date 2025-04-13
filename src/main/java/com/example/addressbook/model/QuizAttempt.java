@@ -24,7 +24,7 @@ public class QuizAttempt {
         return selectedAnswers[questionIndex];
     }
     public void setSelectedAnswer(int questionIndex, int selectedAnswer) throws IndexOutOfBoundsException{
-        if (selectedAnswer >= quiz.getQuestions().get(questionIndex).answersCount() || selectedAnswer < -1) {
+        if (selectedAnswer >= quiz.getQuestions().get(questionIndex).getAnswersCount() || selectedAnswer < -1) {
             throw new IndexOutOfBoundsException("Provided selectedAnswer index is not within range of answers list for provided questionIndex");
         } else {
             selectedAnswers[questionIndex] = selectedAnswer;
