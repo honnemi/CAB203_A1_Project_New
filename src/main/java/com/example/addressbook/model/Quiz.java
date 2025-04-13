@@ -23,6 +23,9 @@ public class Quiz {
     public ArrayList<QuizQuestion> getQuestions() {
         return questions;
     }
+    public void setQuestions(ArrayList<QuizQuestion> questions) {
+        this.questions = questions;
+    }
 
     public void addQuestion(QuizQuestion question) {
         questions.add(question);
