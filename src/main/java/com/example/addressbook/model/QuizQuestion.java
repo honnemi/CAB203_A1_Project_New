@@ -13,11 +13,16 @@ public class QuizQuestion {
         this.answers = new ArrayList<>(Arrays.asList("Option A", "Option B", "Option C", "Option D"));
         this.correctAnswer = 0;
     }
-    public QuizQuestion(String questionText, ArrayList<String> answers, int correctAnswer) throws IndexOutOfBoundsException {
+    public QuizQuestion(String questionText, ArrayList<String> answers, int correctAnswer)
+            throws IndexOutOfBoundsException, IllegalArgumentException {
         this.questionText = questionText;
-        this.answers = answers;
-        if (correctAnswer >= answers.size()) {
-            throw new IndexOutOfBoundsException("Provided correctAnswer index is not within range of provided answers list");
+        if (answers.isEmpty()) {
+            throw new IllegalArgumentException("Provided 'answers' list is empty. QuizQuestion must have at least one answer.");
+        } else {
+            this.answers = answers;
+        }
+        if (correctAnswer >= answers.size() || correctAnswer < 0) {
+            throw new IndexOutOfBoundsException("Provided 'correctAnswer' index is not within range of provided 'answers' list.");
         } else {
             this.correctAnswer = correctAnswer;
         }
@@ -33,8 +38,12 @@ public class QuizQuestion {
     public ArrayList<String> getAnswers() {
         return answers;
     }
-    public void setAnswers(ArrayList<String> answers) {
-        this.answers = answers;
+    public void setAnswers(ArrayList<String> answers) throws IllegalArgumentException {
+        if (answers.isEmpty()) {
+            throw new IllegalArgumentException("Provided 'answers' list is empty. QuizQuestion must have at least one answer.");
+        } else {
+            this.answers = answers;
+        }
     }
 
     public int getCorrectAnswer() {
@@ -42,7 +51,7 @@ public class QuizQuestion {
     }
     public void setCorrectAnswer(int correctAnswer) {
         if (correctAnswer >= answers.size() || correctAnswer < 0) {
-            throw new IndexOutOfBoundsException("Provided correctAnswer index is not within range of answers list");
+            throw new IndexOutOfBoundsException("Provided 'correctAnswer' index is not within range of 'answers' list.");
         } else {
             this.correctAnswer = correctAnswer;
         }

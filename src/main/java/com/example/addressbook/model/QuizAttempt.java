@@ -6,7 +6,10 @@ public class QuizAttempt {
     private final Quiz quiz;
     private int[] selectedAnswers; // index of selected answer in answers list for each question. -1 means no answer selected.
 
-    public QuizAttempt(Quiz quiz) {
+    public QuizAttempt(Quiz quiz) throws IllegalArgumentException {
+        if (quiz.getLength() == 0) {
+            throw new IllegalArgumentException("Provided 'quiz' has no questions. Quiz must have at least one question before QuizAttempt can be created.");
+        }
         this.quiz = quiz;
         this.selectedAnswers = new int[quiz.getLength()];
         Arrays.fill(selectedAnswers, -1);
@@ -25,7 +28,7 @@ public class QuizAttempt {
     }
     public void setSelectedAnswer(int questionIndex, int selectedAnswer) throws IndexOutOfBoundsException{
         if (selectedAnswer >= quiz.getQuestions().get(questionIndex).getAnswersCount() || selectedAnswer < -1) {
-            throw new IndexOutOfBoundsException("Provided selectedAnswer index is not within range of answers list for provided questionIndex");
+            throw new IndexOutOfBoundsException("Provided 'selectedAnswer' index is not within range of answers list for provided 'questionIndex'.");
         } else {
             selectedAnswers[questionIndex] = selectedAnswer;
         }
@@ -51,5 +54,9 @@ public class QuizAttempt {
            }
         }
         return score;
+    }
+
+    public double getScorePercentage() { // returns score as a percentage to one decimal place
+        return Math.round(((double) getScore() / quiz.getLength()) * 10.0) / 10.0;
     }
 }
