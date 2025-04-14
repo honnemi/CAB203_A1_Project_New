@@ -30,7 +30,6 @@ public class Quiz {
     public QuizQuestion getQuestion(int questionIndex) {
         return questions.get(questionIndex);
     }
-
     public void setQuestion(int questionIndex, QuizQuestion question) {
         questions.set(questionIndex, question);
     }

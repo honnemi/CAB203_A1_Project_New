@@ -46,6 +46,13 @@ public class QuizQuestion {
         }
     }
 
+    public String getAnswer(int answerIndex) {
+        return answers.get(answerIndex);
+    }
+    public void setAnswer(int answerIndex, String answerText) {
+        answers.set(answerIndex, answerText);
+    }
+
     public int getCorrectAnswer() {
         return correctAnswer;
     }
