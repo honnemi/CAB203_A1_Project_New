@@ -61,6 +61,6 @@ public class QuizAttempt {
     }
 
     public double getScorePercentage() { // returns score as a percentage to one decimal place
-        return Math.round(((double) getScore() / quiz.getLength()) * 10.0) / 10.0;
+        return Math.round(((double) getScore() / (double) quiz.getLength()) * 1000.0) / 10.0;
     }
 }
