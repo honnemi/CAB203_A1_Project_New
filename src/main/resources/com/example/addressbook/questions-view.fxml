@@ -13,7 +13,7 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <HBox alignment="CENTER_RIGHT" spacing="50.0">
+            <HBox alignment="CENTER_RIGHT" spacing="25.0">
                <children>
                   <Label fx:id="questionsAnsweredTracker" text="Answered: 0/10">
                      <font>
