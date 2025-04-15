@@ -43,16 +43,16 @@ public class QuestionsController {
         ObservableList<Node> observableList = questionDisplay.getChildren();
 
         Label questionNumberLabel = new Label("Question " + questionNumber);
-        questionNumberLabel.setFont(new Font(12));
+        questionNumberLabel.setFont(new Font(14));
         Label questionTextLabel = new Label(question.getQuestionText());
-        questionTextLabel.setFont(new Font(12));
+        questionTextLabel.setFont(new Font(14));
 
         observableList.addAll(questionNumberLabel, questionTextLabel);
         ToggleGroup radioGroup = new ToggleGroup();
         char c = 'A';
         for (int i = 0; i < question.getAnswersCount(); i++) {
             RadioButton radioButton = new RadioButton(c + ") " + question.getAnswer(i));
-            radioButton.setFont(new Font(12));
+            radioButton.setFont(new Font(14));
             radioButton.setToggleGroup(radioGroup);
             observableList.add(radioButton);
             c++;
