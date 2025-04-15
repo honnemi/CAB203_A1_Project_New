@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.geometry.Insets;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 
@@ -39,16 +41,27 @@ public class QuestionsController {
     private VBox createQuestionDisplay(int questionNumber, QuizQuestion question) {
         VBox questionDisplay = new VBox();
         ObservableList<Node> observableList = questionDisplay.getChildren();
-        observableList.add(new Label("Question " + questionNumber));
-        observableList.add(new Label(question.getQuestionText()));
+
+        Label questionNumberLabel = new Label("Question " + questionNumber);
+        questionNumberLabel.setFont(new Font(12));
+        Label questionTextLabel = new Label(question.getQuestionText());
+        questionTextLabel.setFont(new Font(12));
+
+        observableList.addAll(questionNumberLabel, questionTextLabel);
         ToggleGroup radioGroup = new ToggleGroup();
         char c = 'A';
         for (int i = 0; i < question.getAnswersCount(); i++) {
             RadioButton radioButton = new RadioButton(c + ") " + question.getAnswer(i));
+            radioButton.setFont(new Font(12));
             radioButton.setToggleGroup(radioGroup);
             observableList.add(radioButton);
             c++;
         }
+
+        questionDisplay.setStyle("-fx-background-color: #dddddd");
+        questionDisplay.setSpacing(5);
+        questionDisplay.setPadding(new Insets(10));
+
         return questionDisplay;
     }
 
