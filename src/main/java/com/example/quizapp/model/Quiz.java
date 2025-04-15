@@ -1,4 +1,4 @@
-package com.example.addressbook.model;
+package com.example.quizapp.model;
 
 import java.util.ArrayList;
 

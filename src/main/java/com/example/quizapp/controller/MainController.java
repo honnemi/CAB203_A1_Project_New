@@ -1,13 +1,18 @@
-package com.example.addressbook.controller;
+package com.example.quizapp.controller;
 
-import com.example.addressbook.model.Contact;
-import com.example.addressbook.model.IContactDAO;
-import com.example.addressbook.model.SqliteContactDAO;
+import com.example.quizapp.QuizApplication;
+import com.example.quizapp.model.Contact;
+import com.example.quizapp.model.IContactDAO;
+import com.example.quizapp.model.SqliteContactDAO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MainController {
@@ -24,6 +29,8 @@ public class MainController {
     private TextField phoneTextField;
     @FXML
     private VBox contactContainer;
+    @FXML
+    private Button toResultsButton;
     public MainController() {
         contactDAO = new SqliteContactDAO();
     }
@@ -154,5 +161,13 @@ public class MainController {
             // we can just re-select it to refresh the text fields
             selectContact(selectedContact);
         }
+    }
+
+    @FXML
+    private void toResults() throws IOException {
+        Stage stage = (Stage) toResultsButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("results-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), QuizApplication.WIDTH, QuizApplication.HEIGHT);
+        stage.setScene(scene);
     }
 }

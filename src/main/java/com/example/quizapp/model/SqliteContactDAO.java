@@ -1,8 +1,4 @@
-package com.example.addressbook.model;
-
-import com.example.addressbook.model.Contact;
-import com.example.addressbook.model.IContactDAO;
-import com.example.addressbook.model.SqliteConnection;
+package com.example.quizapp.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
