@@ -22,7 +22,7 @@
             <ListView fx:id="contactsListView"  />
             <HBox spacing="10.0">
                 <Button text="New" onAction="#onAdd" maxWidth="Infinity"/>
-                <Button fx:id="toResultsButton" text="Results" onAction="#toResults" maxWidth="Infinity"/>
+                <Button fx:id="resultsButton" text="Results" onAction="#toResults" maxWidth="Infinity"/>
             </HBox>
         </VBox>
         <VBox spacing="10.0" prefWidth="400" fx:id="contactContainer">

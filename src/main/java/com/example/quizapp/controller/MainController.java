@@ -30,7 +30,7 @@ public class MainController {
     @FXML
     private VBox contactContainer;
     @FXML
-    private Button toResultsButton;
+    private Button resultsButton;
     public MainController() {
         contactDAO = new SqliteContactDAO();
     }
@@ -165,8 +165,8 @@ public class MainController {
 
     @FXML
     private void toResults() throws IOException {
-        Stage stage = (Stage) toResultsButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("results-view.fxml"));
+        Stage stage = (Stage) resultsButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("question-details-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), QuizApplication.WIDTH, QuizApplication.HEIGHT);
         stage.setScene(scene);
     }

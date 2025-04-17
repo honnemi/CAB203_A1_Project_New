@@ -1,32 +1,36 @@
 package com.example.quizapp.controller;
 
+import com.example.quizapp.QuizApplication;
 import com.example.quizapp.model.QuizAttempt;
 import com.example.quizapp.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ResultsController {
     @FXML
-    private Label CurrentResult;
+    private Label currentResult;
     @FXML
-    private ProgressIndicator ResultGraph;
+    private ProgressIndicator resultGraph;
     @FXML
-    private VBox Questions;
+    private VBox questions;
     @FXML
-    private Button RetakeQuizButton;
+    private Button retakeQuizButton;
     @FXML
-    private Button ProgressReportButton;
+    private Button progressReportButton;
     @FXML
-    private Button ViewDetailsButton;
+    private Button questionDetailsButton;
     @FXML
-    private Button ExitButton;
+    private Button exitButton;
 
     @FXML
     private void initialize() {
@@ -38,8 +42,8 @@ public class ResultsController {
 //        ResultGraph.setProgress(score / quizLength);
 
         // Example code
-        CurrentResult.setText("5/10");
-        ResultGraph.setProgress(0.5);
+        currentResult.setText("5/10");
+        resultGraph.setProgress(0.5);
 
         // Code to display list of questions for this current quiz attempt
 //        ArrayList<QuizQuestion> questionsList = currentAttempt.getQuiz().getQuestions();
@@ -60,7 +64,15 @@ public class ResultsController {
             Label questionNumber = new Label("Question " + Integer.toString(i + 1));
             Label question = new Label("What is " + Integer.toString(i) + " + 1?");
             questionContainer.getChildren().addAll(questionNumber, question);
-            Questions.getChildren().addAll(questionContainer);
+            questions.getChildren().addAll(questionContainer);
         }
+    }
+
+    @FXML
+    private void toQuestionDetails() throws IOException {
+        Stage stage = (Stage) questionDetailsButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("results-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), QuizApplication.WIDTH, QuizApplication.HEIGHT);
+        stage.setScene(scene);
     }
 }
