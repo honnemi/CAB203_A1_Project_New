@@ -6,9 +6,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.quizapp.controller.ResultsController"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<VBox alignment="TOP_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.quizapp.controller.ResultsController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <Label>Your Results</Label>
+    <VBox spacing="20">
+        <Label>Overview</Label>
+        <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="RetakeQuizButton">Retake quiz</Button>
+        </HBox>
+        <HBox alignment="CENTER">
+            <Label fx:id="CurrentResult"></Label>
+            <ProgressIndicator fx:id="ResultGraph"></ProgressIndicator>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="ProgressReportButton" BorderPane.alignment="BOTTOM_RIGHT">View progress</Button>
+        </HBox>
+        <Label>Question Breakdown</Label>
+        <VBox fx:id="Questions" spacing="10"></VBox>
+        <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="QuestionDetailsButton">View details</Button>
+            <Button fx:id="ExitButton">Exit to dashboard</Button>
+        </HBox>
+    </VBox>
+</VBox>
