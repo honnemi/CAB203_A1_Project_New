@@ -34,6 +34,7 @@ public class ResultsController {
 
     @FXML
     private void initialize() {
+
         // Code to display score for this current quiz attempt
 //        int score = currentAttempt.getScore();
 //        int quizLength = currentAttempt.getQuiz().getLength();
@@ -47,8 +48,6 @@ public class ResultsController {
 
         // Code to display list of questions for this current quiz attempt
 //        ArrayList<QuizQuestion> questionsList = currentAttempt.getQuiz().getQuestions();
-
-
 //        for (int i = 0; i <= questionsList; i++) {
 //            QuizQuestion currentQuestion = questionsList.getQuestion(i);
 //            VBox questionContainer = new VBox();
@@ -71,7 +70,7 @@ public class ResultsController {
     @FXML
     private void toQuestionDetails() throws IOException {
         Stage stage = (Stage) questionDetailsButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("results-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("question-details-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), QuizApplication.WIDTH, QuizApplication.HEIGHT);
         stage.setScene(scene);
     }

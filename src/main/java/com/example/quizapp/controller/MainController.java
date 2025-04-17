@@ -166,7 +166,7 @@ public class MainController {
     @FXML
     private void toResults() throws IOException {
         Stage stage = (Stage) resultsButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("question-details-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("results-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), QuizApplication.WIDTH, QuizApplication.HEIGHT);
         stage.setScene(scene);
     }
