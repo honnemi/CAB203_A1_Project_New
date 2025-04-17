@@ -20,7 +20,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="submitQuizButton" mnemonicParsing="false" text="Submit">
+                  <Button fx:id="submitQuizButton" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
                      <font>
                         <Font size="14.0" />
                      </font>

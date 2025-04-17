@@ -1,6 +1,7 @@
 package com.example.addressbook;
 
 import com.example.addressbook.controller.QuestionsController;
+import com.example.addressbook.model.QuizAttempt;
 import com.example.addressbook.model.QuizTakingUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         QuestionsController controller = fxmlLoader.getController();
-        controller.loadQuiz(QuizTakingUtil.generateDefaultQuiz(10));
+        controller.setQuizAttempt(new QuizAttempt(QuizTakingUtil.generateDefaultQuiz(10)));
         stage.setTitle(TITLE);
         stage.setScene(scene);
         stage.show();
