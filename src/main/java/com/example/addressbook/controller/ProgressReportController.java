@@ -5,6 +5,7 @@ import com.example.addressbook.model.QuizAttempt;
 import com.example.addressbook.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 
@@ -16,12 +17,13 @@ public class ProgressReportController {
     @FXML
     private LineChart lineChart;
     @FXML
+    private NumberAxis attemptNumAxis;
+    @FXML
     private TextArea commentsArea;
     @FXML
     private Button backButton;
 
     public void initialize() {
-        lineChart.setLegendVisible(false);
         commentsArea.setText("""
 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -58,6 +60,7 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
         for (int i = 0; i < quizAttempts.length; i++) {
             series.getData().add(new XYChart.Data(i + 1, quizAttempts[i].getScorePercentage()));
         }
+        attemptNumAxis.setUpperBound(quizAttempts.length);
         lineChart.getData().add(series);
     }
 

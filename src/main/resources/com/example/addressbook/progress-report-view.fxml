@@ -15,12 +15,12 @@
       </Label>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <LineChart fx:id="lineChart" prefHeight="275.0" prefWidth="353.0">
+            <LineChart fx:id="lineChart" legendVisible="false" prefHeight="275.0" prefWidth="353.0">
               <xAxis>
-                <NumberAxis autoRanging="false" label="Attempt number" lowerBound="1.0" minorTickVisible="false" side="BOTTOM" tickUnit="1.0" upperBound="5.0" />
+                <NumberAxis fx:id="attemptNumAxis" autoRanging="false" label="Attempt number" lowerBound="1.0" minorTickVisible="false" side="BOTTOM" tickMarkVisible="false" tickUnit="1.0" upperBound="5.0" />
               </xAxis>
               <yAxis>
-                <NumberAxis autoRanging="false" label="Score (%)" side="LEFT" />
+                <NumberAxis autoRanging="false" label="Score (%)" minorTickVisible="false" side="LEFT" tickMarkVisible="false" tickUnit="10.0" />
               </yAxis>
             </LineChart>
             <VBox>
