@@ -2,6 +2,7 @@ module com.example.quizapp {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
 
 
     opens com.example.quizapp to javafx.fxml;

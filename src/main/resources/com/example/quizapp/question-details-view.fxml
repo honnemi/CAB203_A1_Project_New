@@ -15,8 +15,8 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <AnchorPane>
-        <Label fx:id="quizName" AnchorPane.leftAnchor="10"></Label>
-        <Button fx:id="backToResultsButton" AnchorPane.rightAnchor="10" onAction="#backToResults">Back to results</Button>
+        <Label fx:id="quizName"></Label>
+        <Button fx:id="backToResultsButton" AnchorPane.rightAnchor="0" onAction="#backToResults">Back to results</Button>
     </AnchorPane>
-    <VBox fx:id="questions" alignment="CENTER"></VBox>
+    <VBox fx:id="questions"></VBox>
 </VBox>
