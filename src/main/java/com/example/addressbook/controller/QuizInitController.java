@@ -30,20 +30,15 @@ public class QuizInitController {
 
     @FXML
     public void initialize() {
-        // Group toggle buttons
         ToggleGroup group = new ToggleGroup();
         q1to10.setToggleGroup(group);
         q10to20.setToggleGroup(group);
         q20to30.setToggleGroup(group);
-
-        // Store selected toggle value
         group.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
             if (newToggle != null) {
                 questionRange = ((ToggleButton) newToggle).getText();
             }
         });
-
-        // Handle file upload click
         uploadBox.setOnMouseClicked((MouseEvent e) -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Study Material File");
@@ -55,8 +50,6 @@ public class QuizInitController {
                 errorLabel.setText("No file selected.");
             }
         });
-
-        // Handle start quiz
         startQuizBtn.setOnAction(e -> {
             if (selectedFile == null) {
                 errorLabel.setText("Please upload a file first!");
@@ -76,28 +69,24 @@ public class QuizInitController {
         double difficulty = difficultySlider.getValue();
 
         QuizInitConfig config = new QuizInitConfig(selectedFile, difficulty, questionRange);
-
-        // Store globally for access by quiz logic or next scene
         AppState.currentQuizConfig = config;
 
         System.out.println("✅ Quiz config stored:");
         System.out.println("File: " + config.getUploadedFile().getName());
         System.out.println("Difficulty: " + config.getDifficulty());
         System.out.println("Questions: " + config.getQuestionRange());
-
-        // Optional: navigate to quiz screen here
     }
 
-    backToDashboardBtn.setOnAction(e -> {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/Dashboard.fxml"));
-            Scene dashboardScene = new Scene(loader.load(), 900, 600);
-            Stage stage = (Stage) backToDashboardBtn.getScene().getWindow();
-            stage.setScene(dashboardScene);
-            stage.setTitle("Dashboard");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            errorLabel.setText("Failed to return to dashboard.");
-        }
-    });
+//    backToDashboardBtn.setOnAction(e -> {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/Dashboard.fxml"));
+//            Scene dashboardScene = new Scene(loader.load(), 900, 600);
+//            Stage stage = (Stage) backToDashboardBtn.getScene().getWindow();
+//            stage.setScene(dashboardScene);
+//            stage.setTitle("Dashboard");
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            errorLabel.setText("Failed to return to dashboard.");
+//        }
+//    });
 }
