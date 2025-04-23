@@ -22,13 +22,13 @@
             <Label fx:id="currentResult"></Label>
             <ProgressIndicator fx:id="resultGraph"></ProgressIndicator>
         </HBox>
-        <HBox alignment="CENTER_RIGHT">
-            <Button fx:id="progressReportButton" BorderPane.alignment="BOTTOM_RIGHT">View progress</Button>
+        <HBox alignment="CENTER_RIGHT" spacing="20">
+            <Button fx:id="progressReportButton">View progress</Button>
+            <Button fx:id="questionDetailsButton" onAction="#toQuestionDetails">View details</Button>
         </HBox>
         <Label>Question Breakdown</Label>
-        <VBox fx:id="questions" spacing="10"></VBox>
+        <ScrollPane fx:id="questions"></ScrollPane>
         <HBox alignment="CENTER_RIGHT" spacing="20">
-            <Button fx:id="questionDetailsButton" onAction="#toQuestionDetails">View details</Button>
             <Button fx:id="exitButton">Exit to dashboard</Button>
         </HBox>
     </VBox>

@@ -5,15 +5,19 @@ import com.example.quizapp.model.QuizAttempt;
 import com.example.quizapp.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static javafx.scene.control.ScrollPane.ScrollBarPolicy.*;
 
 public class ResultsController {
     @FXML
@@ -21,7 +25,7 @@ public class ResultsController {
     @FXML
     private ProgressIndicator resultGraph;
     @FXML
-    private VBox questions;
+    private ScrollPane questions;
     @FXML
     private Button retakeQuizButton;
     @FXML
@@ -55,9 +59,17 @@ public class ResultsController {
         resultGraph.setProgress(0.5);
 
         // Code to display list of questions for this current quiz attempt
-        /*
+
         // Get list of questions for current quiz attempt
-        ArrayList<QuizQuestion> questionsList = currentAttempt.getQuiz().getQuestions();
+        /*ArrayList<QuizQuestion> questionsList = currentAttempt.getQuiz().getQuestions();
+
+        // Set up scroll pane to only scroll vertically as needed
+        questions.setHbarPolicy(NEVER);
+        questions.setVbarPolicy(AS_NEEDED);
+        questions.setMaxHeight(500);
+
+        // Create container to group all questions
+        VBox allQuestions = new VBox();
 
         // Loop over list of questions to display each one
         for (int i = 1; i <= questionsList.toArray().length; i++) {
@@ -69,12 +81,22 @@ public class ResultsController {
             Label questionNumber = new Label("Question" + (i + 1));
             Label question = new Label(currentQuestion.getQuestionText());
 
-            // Group both into a container
+            // Group both into a container for each question
             questionContainer.getChildren().addAll(questionNumber, question);
 
-            // Add the above to container defined in fxml file to update the page
-            questions.getChildren().addAll(questionContainer);
-        }*/
+            // Group all questions into one container
+            allQuestions.getChildren().addAll(questionContainer);
+            allQuestions.setSpacing(20);
+            allQuestions.setPadding(new Insets(10, 10, 10, 10));
+        }
+
+        // Set larger container as content of scroll pane
+        questions.setContent(allQuestions);*/
+
+        questions.setHbarPolicy(NEVER);
+        questions.setVbarPolicy(AS_NEEDED);
+        questions.setMaxHeight(500);
+        VBox allQuestions = new VBox();
 
         // Example code
         for (int i = 1; i <= 4; i++) {
@@ -82,8 +104,12 @@ public class ResultsController {
             Label questionNumber = new Label("Question " + (i + 1));
             Label question = new Label("What is " + i + " + 1?");
             questionContainer.getChildren().addAll(questionNumber, question);
-            questions.getChildren().addAll(questionContainer);
+            allQuestions.setSpacing(20);
+            allQuestions.setPadding(new Insets(10, 10, 10, 10));
+            allQuestions.getChildren().addAll(questionContainer);
         }
+
+        questions.setContent(allQuestions);
     }
 
     @FXML
