@@ -63,6 +63,18 @@ public class QuizInitController {
 
             storeQuizInit();
         });
+        backToDashboardBtn.setOnAction(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/Dashboard.fxml"));
+                Scene dashboardScene = new Scene(loader.load(), 900, 600);
+                Stage stage = (Stage) backToDashboardBtn.getScene().getWindow();
+                stage.setScene(dashboardScene);
+                stage.setTitle("Dashboard");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                errorLabel.setText("Failed to return to dashboard.");
+            }
+        });
     }
 
     private void storeQuizInit() {
@@ -71,22 +83,11 @@ public class QuizInitController {
         QuizInitConfig config = new QuizInitConfig(selectedFile, difficulty, questionRange);
         AppState.currentQuizConfig = config;
 
-        System.out.println("✅ Quiz config stored:");
+        System.out.println("Quiz config stored:");
         System.out.println("File: " + config.getUploadedFile().getName());
         System.out.println("Difficulty: " + config.getDifficulty());
         System.out.println("Questions: " + config.getQuestionRange());
     }
 
-//    backToDashboardBtn.setOnAction(e -> {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/Dashboard.fxml"));
-//            Scene dashboardScene = new Scene(loader.load(), 900, 600);
-//            Stage stage = (Stage) backToDashboardBtn.getScene().getWindow();
-//            stage.setScene(dashboardScene);
-//            stage.setTitle("Dashboard");
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//            errorLabel.setText("Failed to return to dashboard.");
-//        }
-//    });
+
 }
