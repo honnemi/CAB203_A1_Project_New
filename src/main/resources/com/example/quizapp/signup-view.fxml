@@ -6,7 +6,7 @@
 <?import javafx.geometry.Pos?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.addressbook.controller.SignUpController"
+      fx:controller="com.example.quizapp.controller.SignUpController"
       alignment="CENTER" spacing="15" prefWidth="350" prefHeight="400">
 
     <padding>

@@ -1,8 +1,7 @@
 package com.example.quizapp.controller;
 
-import com.example.quizapp.QuizApplication;
+import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.QuizAttempt;
-import com.example.quizapp.model.QuizQuestion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -15,7 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.*;
 
@@ -115,8 +113,8 @@ public class ResultsController {
     @FXML
     private void toQuestionDetails() throws IOException {
         Stage stage = (Stage) questionDetailsButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(QuizApplication.class.getResource("question-details-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), QuizApplication.WIDTH, QuizApplication.HEIGHT);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("question-details-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
 }

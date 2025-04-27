@@ -1,4 +1,4 @@
-package com.example.addressbook.controller;
+package com.example.quizapp.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

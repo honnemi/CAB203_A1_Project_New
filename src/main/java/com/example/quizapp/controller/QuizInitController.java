@@ -1,9 +1,9 @@
-package com.example.addressbook.controller;
+package com.example.quizapp.controller;
 
-import com.example.addressbook.HelloApplication;
-import com.example.addressbook.model.AppState;
-import com.example.addressbook.model.QuizInitConfig;
-import com.example.addressbook.model.QuizTakingUtil;
+import com.example.quizapp.HelloApplication;
+import com.example.quizapp.model.AppState;
+import com.example.quizapp.model.QuizInitConfig;
+import com.example.quizapp.model.QuizTakingUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;

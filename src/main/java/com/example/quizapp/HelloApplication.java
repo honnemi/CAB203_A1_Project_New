@@ -1,8 +1,6 @@
-package com.example.addressbook;
+package com.example.quizapp;
 
-import com.example.addressbook.controller.QuestionsController;
-import com.example.addressbook.model.QuizAttempt;
-import com.example.addressbook.model.QuizTakingUtil;
+import com.example.quizapp.model.QuizAttempt;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

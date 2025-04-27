@@ -1,9 +1,9 @@
-package com.example.addressbook.controller;
+package com.example.quizapp.controller;
 
 
-import com.example.addressbook.HelloApplication;
-import com.example.addressbook.model.SQLiteUserDAOLive;
-import com.example.addressbook.model.User;
+import com.example.quizapp.HelloApplication;
+import com.example.quizapp.model.SQLiteUserDAOLive;
+import com.example.quizapp.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

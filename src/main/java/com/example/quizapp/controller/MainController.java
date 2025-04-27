@@ -1,8 +1,8 @@
-package com.example.addressbook.controller;
+package com.example.quizapp.controller;
 
-import com.example.addressbook.model.Contact;
-import com.example.addressbook.model.IContactDAO;
-import com.example.addressbook.model.SqliteContactDAODemo;
+import com.example.quizapp.model.Contact;
+import com.example.quizapp.model.IContactDAO;
+import com.example.quizapp.model.SqliteContactDAODemo;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;

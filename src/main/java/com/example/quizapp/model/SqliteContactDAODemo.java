@@ -1,8 +1,5 @@
-<<<<<<<< HEAD:src/main/java/com/example/quizapp/model/SqliteContactDAODemo.java
-package com.example.addressbook.model;
-========
 package com.example.quizapp.model;
->>>>>>>> Results:src/main/java/com/example/quizapp/model/SqliteContactDAO.java
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
