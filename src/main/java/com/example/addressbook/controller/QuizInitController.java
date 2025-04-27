@@ -56,11 +56,13 @@ public class QuizInitController {
         startQuizBtn.setOnAction(e -> {
             if (selectedFile == null) {
                 errorLabel.setText("Please upload a file first!");
+                errorLabel.setVisible(true);
                 return;
             }
 
             if (questionRange == null || questionRange.isEmpty()) {
                 errorLabel.setText("Please select question range.");
+                errorLabel.setVisible(true);
                 return;
             }
 
