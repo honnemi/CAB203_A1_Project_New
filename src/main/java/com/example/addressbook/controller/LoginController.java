@@ -2,7 +2,7 @@ package com.example.addressbook.controller;
 
 
 import com.example.addressbook.HelloApplication;
-import com.example.addressbook.model.SQLiteConnectionLive;
+import com.example.addressbook.model.SQLiteUserConnectionLive;
 import com.example.addressbook.model.SQLiteUserDAOLive;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
