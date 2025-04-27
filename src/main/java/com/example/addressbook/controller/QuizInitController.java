@@ -65,7 +65,7 @@ public class QuizInitController {
         });
         backToDashboardBtn.setOnAction(e -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/Dashboard.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/Dashboard/Dashboard.fxml"));
                 Scene dashboardScene = new Scene(loader.load(), 900, 600);
                 Stage stage = (Stage) backToDashboardBtn.getScene().getWindow();
                 stage.setScene(dashboardScene);
