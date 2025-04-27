@@ -117,4 +117,27 @@ public class ResultsController {
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
+
+    @FXML
+    private void backToQuiz() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
+        Scene quizPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) retakeQuizButton.getScene().getWindow();
+        stage.setScene(quizPage);
+        stage.setTitle("Quiz");
+    }
+
+    @FXML
+    private void exitResults() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Dashboard.fxml"));
+        Scene dashboardPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.setScene(dashboardPage);
+        stage.setTitle("Dashboard");
+    }
+
+    @FXML
+    private void toProgressReport() throws IOException {
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.quizapp.controller;
 
+import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.QuizAttempt;
 
@@ -8,12 +9,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -97,7 +102,7 @@ public class QuestionsController {
     }
 
     @FXML
-    private void onSubmit() {
+    private void onSubmit() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm submission");
         alert.setHeaderText(null);
@@ -116,6 +121,11 @@ public class QuestionsController {
         if (buttonType.isPresent() && buttonType.get() == ButtonType.OK) {
             // Add result to database
             // Move to results page
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("results-view.fxml"));
+            Scene resultsPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            Stage stage = (Stage) submitQuizButton.getScene().getWindow();
+            stage.setScene(resultsPage);
+            stage.setTitle("Quiz Results");
         }
     }
 }
