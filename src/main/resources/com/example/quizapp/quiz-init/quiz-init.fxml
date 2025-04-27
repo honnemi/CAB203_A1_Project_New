@@ -5,7 +5,7 @@
 <?import javafx.geometry.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.addressbook.controller.QuizInitController"
+      fx:controller="com.example.quizapp.controller.QuizInitController"
       spacing="20" alignment="TOP_CENTER" style="-fx-background-color: #e6e6e6; -fx-padding: 30;">
 
     <Label text="Quiz Initialisation Page" style="-fx-font-size: 24px; -fx-font-weight: bold;" />

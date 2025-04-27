@@ -17,7 +17,7 @@ public class DashboardController {
     public void initialize() {
         addQuizBox.setOnMouseClicked((MouseEvent event) -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/quiz-init/quiz-init.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/quiz-init/quiz-init.fxml"));
                 Scene quizInitScene = new Scene(loader.load(), 900, 600);
 
                 Stage stage = (Stage) addQuizBox.getScene().getWindow();

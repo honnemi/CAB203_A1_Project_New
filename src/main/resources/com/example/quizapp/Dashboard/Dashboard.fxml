@@ -7,7 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.addressbook.controller.DashboardController">
+            fx:controller="com.example.quizapp.controller.DashboardController">
 
     <!-- Top navigation bar -->
     <top>

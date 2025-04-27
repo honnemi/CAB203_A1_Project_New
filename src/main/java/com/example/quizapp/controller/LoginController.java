@@ -28,7 +28,7 @@ public class LoginController {
             System.out.println("Login successful!");
             errorLabel.setVisible(false);
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/addressbook/Dashboard/Dashboard.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
                 Scene dashboardScene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 stage.setScene(dashboardScene);
