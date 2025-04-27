@@ -27,7 +27,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         QuestionsController controller = fxmlLoader.getController();
-        controller.setQuizAttempt(new QuizAttempt(QuizTakingUtil.generateDefaultQuiz(10)));
+        controller.setQuiz(QuizTakingUtil.generateDefaultQuiz(10));
         stage.setTitle(TITLE);
         stage.setScene(scene);
         stage.show();
