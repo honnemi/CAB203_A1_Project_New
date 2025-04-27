@@ -1,11 +1,22 @@
 package com.example.quizapp.controller;
+import com.example.quizapp.HelloApplication;
+import com.example.quizapp.model.quizAppAlert;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
 
 
 public class SettingsController {
 
+    @FXML public Button settingsBack;
+    @FXML private Label messageBox;
     @FXML private Button accountButton;
     @FXML private Button personalisationButton;
     @FXML private Button notificationsButton;
@@ -15,49 +26,72 @@ public class SettingsController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
 
+
+    public void settingsBackPressed(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
+            Scene dashboardScene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            Stage stage = (Stage) settingsBack.getScene().getWindow();
+            stage.setTitle("Dashboard");
+            stage.setScene(dashboardScene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void handleLogout() {
-        System.out.println("Logout clicked!");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setTitle(HelloApplication.TITLE);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleAccount() {
-        System.out.println("Account tab clicked");
+        setMessageBox("Account tab clicked", 2);
+        quizAppAlert alert = new quizAppAlert();
+        alert.alert("Alert title", "This is an alert", "Alert content");
     }
 
     @FXML
     private void handlePersonalisation() {
-        System.out.println("Personalisation tab clicked");
+        setMessageBox("Personalisation tab clicked", 2);
     }
 
     @FXML
     private void handleNotifications() {
-        System.out.println("Notifications tab clicked");
-    }
-
-    @FXML
-    private void handleDifficulty() {
-        System.out.println("Difficulty tab clicked");
-    }
-
-    @FXML
-    private void handleChangePicture() {
-        System.out.println("Change picture clicked");
+        setMessageBox("Notifications tab clicked", 2);
     }
 
     @FXML
     private void handleChangePassword() {
-        System.out.println("Change password clicked");
+        setMessageBox("Change password clicked", 2);
     }
 
     public void handleChangeUsername(ActionEvent actionEvent) {
-        System.out.println("Change username clicked");
+        setMessageBox("Change username clicked", 2);
     }
 
     public void handleChangeEmail(ActionEvent actionEvent) {
-        System.out.println("Change email clicked");
+        setMessageBox("Change email clicked", 2);
     }
 
+    public void setMessageBox(String message, Integer time){
+        messageBox.setText(message);
+        PauseTransition waiting = new PauseTransition(Duration.seconds(time));
+        waiting.setOnFinished(event -> messageBox.setText(""));
+        waiting.play();
+    }
 
 
 }

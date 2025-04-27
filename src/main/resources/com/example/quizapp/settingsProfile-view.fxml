@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -13,81 +12,106 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="TOP_LEFT" prefHeight="600.0" prefWidth="800.0" spacing="20.0"
-      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.quizapp.controller.SettingsController">
+<VBox alignment="TOP_LEFT" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.quizapp.controller.SettingsController">
 
    <padding>
-      <Insets top="10.0" right="20.0" bottom="20.0" left="20.0" />
+      <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
    </padding>
 
    <children>
-      <!-- Title -->
-      <Label text="Settings" alignment="TOP_LEFT">
-         <font>
-            <Font name="Monotype Koufi Bold" size="24.0" />
-         </font>
-      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="settingsBack" text="⇽ " onAction="#settingsBackPressed">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Button>
+            <!-- Title -->
+            <Label alignment="TOP_LEFT" text="Settings">
+               <font>
+                  <Font name="Monotype Koufi Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
 
       <!-- Main Area: Sidebar + Content -->
-      <HBox VBox.vgrow="ALWAYS" spacing="20.0">
+      <HBox spacing="20.0" VBox.vgrow="ALWAYS">
          <children>
             <!-- Sidebar Buttons -->
             <VBox fx:id="tabsBox" prefWidth="150.0" spacing="10.0">
                <children>
-                  <Button fx:id="accountButton" text="Account" onAction="#handleAccount" prefWidth="140.0" />
-                  <Button fx:id="personalisationButton" text="Personalisation" onAction="#handlePersonalisation" prefWidth="140.0" />
-                  <Button fx:id="notificationsButton" text="Notifications" onAction="#handleNotifications" prefWidth="140.0" />
-                  <Button fx:id="logoutButton" text="Logout" onAction="#handleLogout" prefWidth="140.0" />
+                  <Button fx:id="accountButton" onAction="#handleAccount" prefWidth="140.0" text="Account" />
+                  <Button fx:id="personalisationButton" onAction="#handlePersonalisation" prefWidth="140.0" text="Personalisation" />
+                  <Button fx:id="notificationsButton" onAction="#handleNotifications" prefWidth="140.0" text="Notifications" />
+                  <Button fx:id="logoutButton" onAction="#handleLogout" prefWidth="140.0" text="Logout" />
                </children>
             </VBox>
 
             <!-- Main Content -->
-            <VBox spacing="15.0" prefWidth="600.0">
+            <VBox prefWidth="600.0" spacing="15.0">
                <children>
-                  <!-- Profile Picture -->
-                  <Circle radius="50.0" stroke="BLACK" strokeType="INSIDE">
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop offset="0.0">
-                                 <color>
-                                    <Color blue="1.0" green="0.6" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Circle>
-
-                  <Label text="Change Picture" underline="true" alignment="CENTER">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <!-- Profile Picture -->
+                              <Circle radius="50.0" stroke="BLACK" strokeType="INSIDE">
+                                 <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop offset="0.0">
+                                             <color>
+                                                <Color green="0.6" blue="1.0" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </fill>
+                              </Circle>
+            
+                              <Label alignment="CENTER" text="Change Picture" underline="true">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <TextFlow prefHeight="200.0" prefWidth="300.0">
+                           <children>
+                              <Label fx:id="messageBox" prefWidth="300.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="200.0" />
+                           </HBox.margin>
+                        </TextFlow>
+                     </children>
+                  </HBox>
 
                   <!-- Form Fields -->
-                  <VBox spacing="10.0" alignment="TOP_CENTER">
+                  <VBox alignment="TOP_CENTER" spacing="10.0">
                      <children>
                         <Label text="Username" />
-                        <TextField fx:id="usernameField" promptText="exampleUserName" prefWidth="300.0" />
-                        <Button text="Change Username" onAction="#handleChangeUsername" />
+                        <TextField fx:id="usernameField" prefWidth="300.0" promptText="exampleUserName" />
+                        <Button onAction="#handleChangeUsername" text="Change Username" />
 
                         <Label text="Email" />
-                        <TextField fx:id="emailField" promptText="example@email.com" prefWidth="300.0" />
-                        <Button text="Update Email" onAction="#handleChangeEmail" />
+                        <TextField fx:id="emailField" prefWidth="300.0" promptText="example@email.com" />
+                        <Button onAction="#handleChangeEmail" text="Update Email" />
 
                         <Label text="Password" />
-                        <PasswordField fx:id="oldPasswordField" promptText="Enter Old Password" prefWidth="300.0" />
-                        <PasswordField fx:id="passwordField" promptText="Enter New Password" prefWidth="300.0" />
+                        <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Enter Old Password" />
+                        <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Enter New Password" />
 
-                        <Button text="Change Password" onAction="#handleChangePassword" />
+                        <Button onAction="#handleChangePassword" text="Change Password" />
 
                      </children>
                   </VBox>

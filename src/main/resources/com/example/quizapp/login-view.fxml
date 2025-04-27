@@ -22,5 +22,5 @@
         <Button fx:id = "cancelButton" text = "Cancel" onAction="#onCancelClick"/>
     </HBox>
 
-    <Label fx:id="errorLabel" textFill="red" visible="false"/>
+    <Label fx:id="errorLabel" textFill="red" visible="true"/>
 </VBox>
