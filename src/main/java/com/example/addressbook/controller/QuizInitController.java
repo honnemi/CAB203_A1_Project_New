@@ -1,7 +1,9 @@
 package com.example.addressbook.controller;
 
+import com.example.addressbook.HelloApplication;
 import com.example.addressbook.model.AppState;
 import com.example.addressbook.model.QuizInitConfig;
+import com.example.addressbook.model.QuizTakingUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -51,17 +53,32 @@ public class QuizInitController {
             }
         });
         startQuizBtn.setOnAction(e -> {
+            // commented out returns and storeQuizInit so no file or question range needed currently
             if (selectedFile == null) {
                 errorLabel.setText("Please upload a file first!");
-                return;
+                //return;
             }
 
             if (questionRange == null || questionRange.isEmpty()) {
                 errorLabel.setText("Please select question range.");
-                return;
+                //return;
             }
 
-            storeQuizInit();
+            // storeQuizInit();
+
+            // move to questions page
+            try {
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
+                Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+                QuestionsController controller = loader.getController();
+                // currently passes in quiz with default values
+                controller.setQuiz(QuizTakingUtil.generateDefaultQuiz(10));
+                Stage stage = (Stage) startQuizBtn.getScene().getWindow();
+                stage.setScene(scene);
+                stage.setTitle("Quiz");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
         backToDashboardBtn.setOnAction(e -> {
             try {
