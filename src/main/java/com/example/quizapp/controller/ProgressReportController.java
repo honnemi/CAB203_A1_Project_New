@@ -47,6 +47,8 @@ Amet justo donec enim diam vulputate ut pharetra.
 Sapien pellentesque habitant morbi tristique.
 Lorem sed risus ultricies tristique nulla aliquet.
 Elementum nibh tellus molestie nunc non blandit massa.""");
+
+        setLineChartData(generateQuizAttempts(10));
     }
 
     public void setQuizTopicLabel(String topic) {
