@@ -1,14 +1,19 @@
 package com.example.quizapp.controller;
 
+import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.QuizAttempt;
 import com.example.quizapp.model.QuizQuestion;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom; // remove later
 
 public class ProgressReportController {
@@ -43,8 +48,13 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
     }
 
     @FXML
-    private void onBackButtonPressed() {
+    private void onBackButtonPressed() throws IOException {
         // go back to results page
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("results-view.fxml"));
+        Scene resultsPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(resultsPage);
+        stage.setTitle("Quiz Results");
     }
 
     public void setQuizTopicLabel(String topic) {
