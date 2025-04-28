@@ -27,6 +27,8 @@ public class ProgressReportController {
     private TextArea commentsArea;
     @FXML
     private Button backButton;
+    @FXML
+    private Button dashboardButton;
 
     public void initialize() {
         commentsArea.setText("""
@@ -45,16 +47,8 @@ Amet justo donec enim diam vulputate ut pharetra.
 Sapien pellentesque habitant morbi tristique.
 Lorem sed risus ultricies tristique nulla aliquet.
 Elementum nibh tellus molestie nunc non blandit massa.""");
-    }
 
-    @FXML
-    private void onBackButtonPressed() throws IOException {
-        // go back to results page
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("results-view.fxml"));
-        Scene resultsPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.setScene(resultsPage);
-        stage.setTitle("Quiz Results");
+        setLineChartData(generateQuizAttempts(10));
     }
 
     public void setQuizTopicLabel(String topic) {
@@ -72,6 +66,24 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
         }
         attemptNumAxis.setUpperBound(quizAttempts.length);
         lineChart.getData().add(series);
+    }
+
+    @FXML
+    private void onBackButtonPressed() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("results-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Quiz Results");
+    }
+
+    @FXML
+    private void onDashboardButtonPressed() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) dashboardButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Dashboard");
     }
 
     // generates an array of quiz attempts for testing -- delete later
