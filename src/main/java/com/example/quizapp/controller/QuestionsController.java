@@ -33,11 +33,15 @@ public class QuestionsController {
     @FXML
     private VBox questionsContainer;
 
-    private QuizAttempt quizAttempt;
+    private static QuizAttempt quizAttempt;
     private ArrayList<VBox> displayedQuestions;
 
     public void initialize() {
 
+    }
+
+    public static QuizAttempt getQuizAttempt() {
+        return quizAttempt;
     }
 
     private void updateTracker() {
