@@ -37,10 +37,6 @@ public class QuestionDetailsController {
         String name = currentAttempt.getQuiz().getQuizName();
         quizName.setText(name);
 
-        // Example code
-       /* String name = "Quiz Name Here";
-        quizName.setText(name);
-*/
         // Code to display list of questions for this current quiz attempt
 
         // Get list of questions for current quiz attempt
