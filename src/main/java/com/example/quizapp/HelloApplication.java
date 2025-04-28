@@ -1,6 +1,5 @@
 package com.example.quizapp;
 
-import com.example.quizapp.model.QuizAttempt;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

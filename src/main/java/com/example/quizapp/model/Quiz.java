@@ -4,13 +4,20 @@ import java.util.ArrayList;
 
 public class Quiz {
     private String quizName;
+    private String topic;
     private ArrayList<QuizQuestion> questions = new ArrayList<>();
 
     public Quiz() {
         this.quizName = "Quiz Name";
+        this.topic = "Quiz Topic";
     }
     public Quiz(String quizName) {
         this.quizName = quizName;
+        this.topic = "Quiz Topic";
+    }
+    public Quiz(String quizName, String topic) {
+        this.quizName = quizName;
+        this.topic = topic;
     }
 
     public String getQuizName() {
@@ -18,6 +25,13 @@ public class Quiz {
     }
     public void setQuizName(String quizName) {
         this.quizName = quizName;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public ArrayList<QuizQuestion> getQuestions() {
