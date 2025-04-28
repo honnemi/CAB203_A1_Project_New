@@ -32,6 +32,8 @@ public class QuestionsController {
     private Button submitQuizButton;
     @FXML
     private VBox questionsContainer;
+    @FXML
+    private Button dashboardButton;
 
     private QuizAttempt quizAttempt;
     private ArrayList<VBox> displayedQuestions;
@@ -126,6 +128,25 @@ public class QuestionsController {
             Stage stage = (Stage) submitQuizButton.getScene().getWindow();
             stage.setScene(resultsPage);
             stage.setTitle("Quiz Results");
+        }
+    }
+
+    @FXML
+    private void onDashboardButtonPressed() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit quiz?");
+        alert.setHeaderText(null);
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Exit");
+        alert.setContentText(
+                "Your progress will not be saved.\nAre you sure you want to exit?"
+        );
+        Optional<ButtonType> buttonType = alert.showAndWait();
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.OK) {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
+            Scene dashboardPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            Stage stage = (Stage) dashboardButton.getScene().getWindow();
+            stage.setScene(dashboardPage);
+            stage.setTitle("Dashboard");
         }
     }
 }

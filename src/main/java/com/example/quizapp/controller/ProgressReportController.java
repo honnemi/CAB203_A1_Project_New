@@ -1,14 +1,19 @@
 package com.example.quizapp.controller;
 
+import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.QuizAttempt;
 import com.example.quizapp.model.QuizQuestion;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom; // remove later
 
 public class ProgressReportController {
@@ -22,6 +27,8 @@ public class ProgressReportController {
     private TextArea commentsArea;
     @FXML
     private Button backButton;
+    @FXML
+    private Button dashboardButton;
 
     public void initialize() {
         commentsArea.setText("""
@@ -42,11 +49,6 @@ Lorem sed risus ultricies tristique nulla aliquet.
 Elementum nibh tellus molestie nunc non blandit massa.""");
     }
 
-    @FXML
-    private void onBackButtonPressed() {
-        // go back to results page
-    }
-
     public void setQuizTopicLabel(String topic) {
         quizTopicLabel.setText("Progress Report: " + topic);
     }
@@ -62,6 +64,24 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
         }
         attemptNumAxis.setUpperBound(quizAttempts.length);
         lineChart.getData().add(series);
+    }
+
+    @FXML
+    private void onBackButtonPressed() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("results-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Quiz Results");
+    }
+
+    @FXML
+    private void onDashboardButtonPressed() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) dashboardButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Dashboard");
     }
 
     // generates an array of quiz attempts for testing -- delete later

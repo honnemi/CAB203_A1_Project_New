@@ -23,7 +23,7 @@
             <ProgressIndicator fx:id="resultGraph"/>
         </HBox>
         <HBox alignment="CENTER_RIGHT" spacing="20">
-            <Button fx:id="progressReportButton">View progress</Button>
+            <Button fx:id="progressReportButton" onAction="#toProgressReport">View progress</Button>
             <Button fx:id="questionDetailsButton" onAction="#toQuestionDetails">View details</Button>
         </HBox>
         <Label>Question Breakdown</Label>
