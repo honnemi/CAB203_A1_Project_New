@@ -17,6 +17,8 @@ public class QuizTest {
     private static final String newTopic = "History";
     private static final String newDifficulty = "medium";
 
+    private static final String invalidDifficulty = "extreme";
+
     private Quiz quiz;
 
     @BeforeEach
@@ -34,6 +36,7 @@ public class QuizTest {
         quiz.setQuizName(newQuizName);
         assertEquals(newQuizName, quiz.getQuizName());
     }
+
     @Test
     public void testGetTopic() {
         assertEquals(topic, quiz.getTopic());
@@ -55,6 +58,12 @@ public class QuizTest {
         quiz.setDifficulty(newDifficulty);
         assertEquals(newDifficulty, quiz.getDifficulty());
     }
+
+    /*@Test
+    public void testInvalidDifficulty() {
+        Exception exception = new IllegalArgumentException("Unknown difficulty: '" + difficulty + "'. Difficulty must be 'easy', 'medium', or 'hard'.");
+        assertThrows(exception, quiz.setDifficulty(invalidDifficulty));
+    }*/
 
     @Test
     public void testGetQuestions() {
@@ -91,7 +100,14 @@ public class QuizTest {
     }
 
     @Test
-    public void testGetLength() {
+    public void testGetLengthListEmpty() {
         assertEquals(0, quiz.getLength());
+    }
+
+    @Test
+    public void testGetLengthListNotEmpty() {
+        QuizQuestion question = new QuizQuestion();
+        quiz.addQuestion(question);
+        assertEquals(1, quiz.getLength());
     }
 }
