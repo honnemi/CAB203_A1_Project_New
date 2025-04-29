@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_LEFT" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.quizapp.controller.SettingsController">
+<VBox alignment="TOP_LEFT" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizapp.controller.SettingsController">
 
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
@@ -24,9 +16,9 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="settingsBack" text="⇽ " onAction="#settingsBackPressed">
+            <Button fx:id="settingsBack" onAction="#settingsBackPressed" text="⇽ ">
                <font>
-                  <Font name="System Bold" size="34.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Button>
             <!-- Title -->
@@ -99,19 +91,32 @@
                   <!-- Form Fields -->
                   <VBox alignment="TOP_CENTER" spacing="10.0">
                      <children>
-                        <Label text="Username" />
+                        <Label text="Username" textOverrun="CLIP">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
                         <TextField fx:id="usernameField" prefWidth="300.0" promptText="exampleUserName" />
                         <Button onAction="#handleChangeUsername" text="Change Username" />
 
-                        <Label text="Email" />
-                        <TextField fx:id="emailField" prefWidth="300.0" promptText="example@email.com" />
+                        <Label text="Email">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding></Label>
+                        <TextField fx:id="emailField" prefWidth="300.0" />
                         <Button onAction="#handleChangeEmail" text="Update Email" />
 
-                        <Label text="Password" />
-                        <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Enter Old Password" />
-                        <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Enter New Password" />
+                        <Label text="Password">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding></Label>
 
-                        <Button onAction="#handleChangePassword" text="Change Password" />
+                        <Button fx:id="toPasswordButton" onAction="#handleToPasswordScreen" text="Change Password" />
 
                      </children>
                   </VBox>

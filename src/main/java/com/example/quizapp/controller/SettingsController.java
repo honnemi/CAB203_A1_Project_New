@@ -1,6 +1,9 @@
 package com.example.quizapp.controller;
+
 import com.example.quizapp.HelloApplication;
+import com.example.quizapp.model.SQLiteUserDAOLive;
 import com.example.quizapp.model.quizAppAlert;
+import com.example.quizapp.model.User;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,12 +13,14 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 
 public class SettingsController {
 
-    @FXML public Button settingsBack;
+    @FXML private Button settingsBack;
+    @FXML private Button passwordBack;
     @FXML private Label messageBox;
     @FXML private Button accountButton;
     @FXML private Button personalisationButton;
@@ -25,6 +30,12 @@ public class SettingsController {
     @FXML private TextField usernameField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
+    @FXML private PasswordField newPasswordField;
+
+    @FXML private Button toPasswordButton;
+
+    @FXML private Label passwordMessageBox;
+    @FXML private Button changePasswordButton;
 
 
     public void settingsBackPressed(ActionEvent actionEvent) {
@@ -58,9 +69,15 @@ public class SettingsController {
 
     @FXML
     private void handleAccount() {
-        setMessageBox("Account tab clicked", 2);
-        quizAppAlert alert = new quizAppAlert();
-        alert.alert("Alert title", "This is an alert", "Alert content");
+        try {
+            Stage stage = (Stage) accountButton.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -73,10 +90,10 @@ public class SettingsController {
         setMessageBox("Notifications tab clicked", 2);
     }
 
-    @FXML
-    private void handleChangePassword() {
-        setMessageBox("Change password clicked", 2);
-    }
+
+
+
+
 
     public void handleChangeUsername(ActionEvent actionEvent) {
         setMessageBox("Change username clicked", 2);
@@ -86,6 +103,54 @@ public class SettingsController {
         setMessageBox("Change email clicked", 2);
     }
 
+    @FXML
+    private void handleToPasswordScreen() {
+        try {
+            Stage stage = (Stage) toPasswordButton.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsPassword-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+    //settingsPassword-view.fxml
+    @FXML
+    public void passwordBackPressed() {
+        try {
+            Stage stage = (Stage) passwordBack.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    public void handleChangePassword() {
+        setMessageBox("Change password clicked", 2);
+        String oldPassword = passwordField.getText();
+        String newPassword = newPasswordField.getText();
+
+        //User newUser = new User()
+        //SQLiteUserDAOLive.updateUser()
+    }
+
+
+
+
+
     public void setMessageBox(String message, Integer time){
         messageBox.setText(message);
         PauseTransition waiting = new PauseTransition(Duration.seconds(time));
@@ -94,4 +159,11 @@ public class SettingsController {
     }
 
 
+
+    private String readfile() {
+        String textOutput = null;
+
+
+        return textOutput;
+    }
 }

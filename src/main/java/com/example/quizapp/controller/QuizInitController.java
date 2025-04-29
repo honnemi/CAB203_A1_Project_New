@@ -4,6 +4,7 @@ import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.AppState;
 import com.example.quizapp.model.QuizInitConfig;
 import com.example.quizapp.model.QuizTakingUtil;
+import com.example.quizapp.model.quizAppAlert;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -14,21 +15,33 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class QuizInitController {
 
-    @FXML private VBox uploadBox;
-    @FXML private Label errorLabel;
-    @FXML private Slider difficultySlider;
-    @FXML private ToggleButton q1to10;
-    @FXML private ToggleButton q10to20;
-    @FXML private ToggleButton q20to30;
-    @FXML private Button startQuizBtn;
-    @FXML private Button backToDashboardBtn;
+    @FXML
+    private VBox uploadBox;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private Slider difficultySlider;
+    @FXML
+    private ToggleButton q1to10;
+    @FXML
+    private ToggleButton q10to20;
+    @FXML
+    private ToggleButton q20to30;
+    @FXML
+    private Button startQuizBtn;
+    @FXML
+    private Button backToDashboardBtn;
 
 
     private File selectedFile;
     private String questionRange;
+    private String uploadedFileContent;
 
     @FXML
     public void initialize() {
@@ -50,6 +63,12 @@ public class QuizInitController {
             if (selectedFile != null) {
                 errorLabel.setText("Selected: " + selectedFile.getName());
                 errorLabel.setVisible(true);
+                try {
+                    uploadedFileContent = readLinesFromFile(selectedFile.getAbsolutePath());
+                    System.out.print("\n" + uploadedFileContent);
+                } catch (Exception error) {
+                    error.printStackTrace();
+                }
             } else {
                 errorLabel.setText("No file selected.");
                 errorLabel.setVisible(true);
@@ -109,5 +128,30 @@ public class QuizInitController {
         System.out.println("Questions: " + config.getQuestionRange());
     }
 
+    private static String readLinesFromFile(String filePath) throws IOException {
+        try {
+            File uploadedFile = new File(filePath);
+            if (!filePath.endsWith(".txt")){
+                throw new FileNotFoundException ("Not a .txt file");
+            }
 
+            Scanner scan = new Scanner(uploadedFile);
+
+            String fileContent = "";
+            while (scan.hasNextLine()) {
+                fileContent = fileContent.concat(scan.nextLine() + "\n");
+            }
+
+            return fileContent;
+        } catch (Exception e) {
+            quizAppAlert fileAlert = new quizAppAlert();
+            fileAlert.alert("File Error", "There was an error with this file!",e.getMessage());
+
+            return null;
+        }
+
+    }
 }
+
+
+
