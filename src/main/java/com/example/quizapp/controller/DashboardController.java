@@ -48,7 +48,7 @@ public class DashboardController {
             String selectedTopic = topicDropdown.getValue();
             if (selectedTopic != null) {
                 System.out.println("Viewing progress for topic: " + selectedTopic);
-                // openProgressPage(selectedTopic);
+                // openProgressPage(selectedTopic); -- adding a navigation for the selected topic progress page
             } else {
                 System.out.println("Please select a topic first.");
             }
@@ -58,7 +58,6 @@ public class DashboardController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/login-view.fxml"));
                 Scene loginScene = new Scene(loader.load(), 900, 600);
-
                 Stage stage = (Stage) logoutLink.getScene().getWindow();
                 stage.setScene(loginScene);
                 stage.setTitle("Login");

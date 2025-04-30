@@ -67,4 +67,11 @@ public class QuizQuestion {
     public int getAnswersCount() {
         return answers.size();
     }
+
+
+    // added a isCorrect class for testing purposes - can remove further down the line
+
+    public boolean isCorrect(int selectedIndex) {
+        return selectedIndex == correctAnswer;
+    }
 }
