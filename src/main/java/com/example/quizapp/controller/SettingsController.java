@@ -19,23 +19,37 @@ import java.io.IOException;
 
 public class SettingsController {
 
-    @FXML private Button settingsBack;
-    @FXML private Button passwordBack;
-    @FXML private Label messageBox;
-    @FXML private Button accountButton;
-    @FXML private Button personalisationButton;
-    @FXML private Button notificationsButton;
-    @FXML private Button logoutButton;
+    @FXML
+    private Button settingsBack;
+    @FXML
+    private Button passwordBack;
+    @FXML
+    private Label messageBox;
+    @FXML
+    private Button accountButton;
+    @FXML
+    private Button personalisationButton;
+    @FXML
+    private Button notificationsButton;
+    @FXML
+    private Button logoutButton;
 
-    @FXML private TextField usernameField;
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private PasswordField newPasswordField;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private PasswordField newPasswordField;
 
-    @FXML private Button toPasswordButton;
+    @FXML
+    private Button toPasswordButton;
 
-    @FXML private Label passwordMessageBox;
-    @FXML private Button changePasswordButton;
+    @FXML
+    private Label passwordMessageBox;
+    @FXML
+    private Button changePasswordButton;
 
 
     public void settingsBackPressed(ActionEvent actionEvent) {
@@ -46,8 +60,7 @@ public class SettingsController {
             stage.setTitle("Dashboard");
             stage.setScene(dashboardScene);
             stage.show();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -61,8 +74,7 @@ public class SettingsController {
             stage.setTitle(HelloApplication.TITLE);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -74,8 +86,7 @@ public class SettingsController {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
             stage.setScene(scene);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -89,10 +100,6 @@ public class SettingsController {
     private void handleNotifications() {
         setMessageBox("Notifications tab clicked", 2);
     }
-
-
-
-
 
 
     public void handleChangeUsername(ActionEvent actionEvent) {
@@ -110,15 +117,11 @@ public class SettingsController {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsPassword-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
             stage.setScene(scene);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
-
-
 
 
     //settingsPassword-view.fxml
@@ -129,12 +132,10 @@ public class SettingsController {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
             stage.setScene(scene);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
 
     @FXML
@@ -148,22 +149,11 @@ public class SettingsController {
     }
 
 
-
-
-
-    public void setMessageBox(String message, Integer time){
+    public void setMessageBox(String message, Integer time) {
         messageBox.setText(message);
         PauseTransition waiting = new PauseTransition(Duration.seconds(time));
         waiting.setOnFinished(event -> messageBox.setText(""));
         waiting.play();
     }
 
-
-
-    private String readfile() {
-        String textOutput = null;
-
-
-        return textOutput;
-    }
 }

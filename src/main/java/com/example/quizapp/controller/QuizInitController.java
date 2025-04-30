@@ -42,6 +42,7 @@ public class QuizInitController {
     private File selectedFile;
     private String questionRange;
     private String uploadedFileContent;
+    private String fileContent;
 
     @FXML
     public void initialize() {
