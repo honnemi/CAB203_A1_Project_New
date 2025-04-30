@@ -13,11 +13,8 @@ import javafx.stage.FileChooser;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
+import static com.example.quizapp.model.QuizInitConfig.readLinesFromFile;
 
 public class QuizInitController {
 
@@ -129,29 +126,6 @@ public class QuizInitController {
         System.out.println("Questions: " + config.getQuestionRange());
     }
 
-    private static String readLinesFromFile(String filePath) throws IOException {
-        try {
-            File uploadedFile = new File(filePath);
-            if (!filePath.endsWith(".txt")){
-                throw new FileNotFoundException ("Not a .txt file");
-            }
-
-            Scanner scan = new Scanner(uploadedFile);
-
-            String fileContent = "";
-            while (scan.hasNextLine()) {
-                fileContent = fileContent.concat(scan.nextLine() + "\n");
-            }
-
-            return fileContent;
-        } catch (Exception e) {
-            quizAppAlert fileAlert = new quizAppAlert();
-            fileAlert.alert("File Error", "There was an error with this file!",e.getMessage());
-
-            return null;
-        }
-
-    }
 }
 
 
