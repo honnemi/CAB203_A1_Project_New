@@ -7,6 +7,7 @@ public class Quiz {
     private String quizName;
     private String topic;
     private String difficulty;
+    private int quiz_id;
     private ArrayList<QuizQuestion> questions = new ArrayList<>();
 
     public Quiz() {
@@ -36,6 +37,9 @@ public class Quiz {
             this.difficulty = difficulty;
         }
     }
+
+    public int getQuizID() {return quiz_id;}
+    public void setQuizID(int id) { this.quiz_id = id;}
 
     public String getQuizName() {
         return quizName;

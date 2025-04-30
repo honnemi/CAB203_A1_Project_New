@@ -23,8 +23,9 @@ public class SqliteContactDAODemo implements IContactDAO {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS users ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "userName VARCHAR NOT NULL,"
-                    + "password VARCHAR NOT NULL,"
+                    + "firstName VARCHAR NOT NULL,"
+                    + "lastName VARCHAR NOT NULL,"
+                    + "phone VARCHAR NOT NULL,"
                     + "email VARCHAR NOT NULL"
                     + ")";
             statement.execute(query);
