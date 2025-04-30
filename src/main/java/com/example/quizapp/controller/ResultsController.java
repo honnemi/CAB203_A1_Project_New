@@ -3,10 +3,13 @@ package com.example.quizapp.controller;
 import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.QuizAttempt;
 import com.example.quizapp.model.QuizQuestion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -23,7 +26,7 @@ public class ResultsController {
     @FXML
     private Label currentResult;
     @FXML
-    private ProgressIndicator resultGraph;
+    private PieChart resultGraph;
     @FXML
     private ScrollPane questions;
     @FXML
@@ -50,7 +53,11 @@ public class ResultsController {
         currentResult.setText(Integer.toString(score) + "/" + Integer.toString(quizLength));
 
         // Update graph to represent score
-        resultGraph.setProgress((double) score / quizLength);
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Correct", score),
+                new PieChart.Data("Incorrect", quizLength - score));
+        resultGraph.setData(pieChartData);
+        resultGraph.setLabelsVisible(true);
 
         // Code to display list of questions for this current quiz attempt
 

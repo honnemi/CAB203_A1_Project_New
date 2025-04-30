@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <VBox spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.quizapp.controller.ResultsController">
     <padding>
@@ -18,8 +19,8 @@
         <HBox alignment="CENTER_RIGHT">
             <Button fx:id="retakeQuizButton" onAction="#backToQuiz">Retake quiz</Button>
         </HBox>
-        <HBox alignment="CENTER" spacing="20">
-            <ProgressIndicator fx:id="resultGraph"/>
+        <HBox alignment="CENTER">
+            <PieChart fx:id="resultGraph"/>
             <Label fx:id="currentResult"/>
         </HBox>
         <HBox alignment="CENTER_RIGHT">
