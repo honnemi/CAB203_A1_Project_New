@@ -3,6 +3,8 @@ package com.example.quizapp.controller;
 
 import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.SQLiteUserDAOLive;
+import com.example.quizapp.model.CurrentUser;
+import com.example.quizapp.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +28,8 @@ public class LoginController {
         if (new SQLiteUserDAOLive().checkUserPresent(username) && new SQLiteUserDAOLive().getUser(username).getPassword().equals(password))
         {
             System.out.println("Login successful!");
+            User currentUser = new SQLiteUserDAOLive().getUser(username);
+            CurrentUser.setInstance(currentUser);
             errorLabel.setVisible(false);
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));

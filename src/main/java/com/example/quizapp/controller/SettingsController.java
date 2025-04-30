@@ -1,6 +1,7 @@
 package com.example.quizapp.controller;
 
 import com.example.quizapp.HelloApplication;
+import com.example.quizapp.model.CurrentUser;
 import com.example.quizapp.model.SQLiteUserDAOLive;
 import com.example.quizapp.model.quizAppAlert;
 import com.example.quizapp.model.User;
@@ -50,6 +51,8 @@ public class SettingsController {
     private Label passwordMessageBox;
     @FXML
     private Button changePasswordButton;
+
+    private User currentUser = CurrentUser.getInstance();
 
 
     public void settingsBackPressed(ActionEvent actionEvent) {
