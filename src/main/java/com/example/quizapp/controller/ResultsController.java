@@ -106,6 +106,8 @@ public class ResultsController {
     private void backToQuiz() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
         Scene quizPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        QuestionsController controller = fxmlLoader.getController();
+        controller.setQuiz(currentAttempt.getQuiz());
         Stage stage = (Stage) retakeQuizButton.getScene().getWindow();
         stage.setScene(quizPage);
         stage.setTitle("Quiz");
