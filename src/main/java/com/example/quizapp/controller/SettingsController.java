@@ -97,6 +97,8 @@ public class SettingsController {
     @FXML
     private void handlePersonalisation() {
         setMessageBox("Personalisation tab clicked", 2);
+        //System.out.println(currentUser.getUserName());
+        //System.out.println(currentUser.getEmail());
     }
 
     @FXML
@@ -147,6 +149,7 @@ public class SettingsController {
         String oldPassword = passwordField.getText();
         String newPassword = newPasswordField.getText();
 
+        //SQLiteUserDAOLive.updateUser(currentUser)
         //User newUser = new User()
         //SQLiteUserDAOLive.updateUser()
     }
