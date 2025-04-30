@@ -52,7 +52,7 @@ public class SettingsController {
     @FXML
     private Button changePasswordButton;
 
-    private User currentUser = CurrentUser.getInstance();
+
 
 
     public void settingsBackPressed(ActionEvent actionEvent) {
@@ -148,8 +148,10 @@ public class SettingsController {
         setMessageBox("Change password clicked", 2);
         String oldPassword = passwordField.getText();
         String newPassword = newPasswordField.getText();
-
-        //SQLiteUserDAOLive.updateUser(currentUser)
+        //Make new user with a different password or email. this then updates it in the database.
+        //must do create new user code, base don the user userName and email from User currentUser
+        User currentUser = CurrentUser.getInstance();
+        new SQLiteUserDAOLive().updateUser(currentUser);
         //User newUser = new User()
         //SQLiteUserDAOLive.updateUser()
     }
