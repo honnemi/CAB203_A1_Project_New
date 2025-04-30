@@ -73,7 +73,7 @@ public class ResultsController {
             VBox questionContainer = new VBox();
 
             // Access and display question number and text for current question
-            Label questionNumber = new Label("Question" + (i + 1));
+            Label questionNumber = new Label("Question " + (i + 1));
             Label question = new Label(currentQuestion.getQuestionText());
 
             // Group both into a container for each question
