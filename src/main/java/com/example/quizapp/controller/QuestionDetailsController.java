@@ -85,7 +85,12 @@ public class QuestionDetailsController {
             }
 
             // Display selected and correct answers in text
-            Label yourAnswerLabel = new Label("Your answer: " + answerLetter(yourAnswer));
+            Label yourAnswerLabel;
+            if (yourAnswer == -1) {
+                yourAnswerLabel = new Label("Your answer: None");
+            } else {
+                yourAnswerLabel = new Label("Your answer: " + answerLetter(yourAnswer));
+            }
             Label correctAnswerLabel = new Label("Correct answer: " + answerLetter(correctAnswer));
 
             // Display horizontally instead of vertically
