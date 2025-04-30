@@ -11,8 +11,8 @@ public class QuizAppAlertTest{
 
     @Test
     public void testQuizAppAlert() throws IOException {
-        quizAppAlert quizAppAlert = new quizAppAlert();
-        Alert alert = quizAppAlert.createAlert("Test Title", "Test Header", "Test Content");
+        quizAppAlert testQuizAppAlert = new quizAppAlert();
+        Alert alert = testQuizAppAlert.createAlert("Test Title", "Test Header", "Test Content");
 
         assertEquals(Alert.AlertType.WARNING, alert.getAlertType());
         assertEquals("Test Title", alert.getTitle());
