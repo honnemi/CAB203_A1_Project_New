@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class quizAppAlert {
 
-        public void alert(String title, String header, String content) throws IOException {
+        public Alert createAlert(String title, String header, String content) throws IOException {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             Image image = new Image(getClass().getResource("/com/example/images/tutorwormdefault.png").toString());
             ImageView imageView = new ImageView();
@@ -22,7 +22,11 @@ public class quizAppAlert {
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);
-
-            alert.showAndWait();
+            return alert;
         }
+
+        public void alert(String title, String header, String content) throws IOException {
+        Alert alert = createAlert(title, header, content);
+        alert.showAndWait();
+    }
 }
