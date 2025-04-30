@@ -59,7 +59,7 @@ public class QuestionDetailsController {
             HBox resultsContainer = new HBox();
 
             // Display and access question number and text for current question
-            Label questionNumber = new Label("Question" + (i + 1));
+            Label questionNumber = new Label("Question " + (i + 1));
             Label question = new Label(currentQuestion.getQuestionText());
 
             // Get index for the selected answer and correct answer
