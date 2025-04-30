@@ -1,5 +1,6 @@
 package com.example.quizapp.controller;
 
+import com.example.quizapp.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,8 @@ import java.io.IOException;
 
 public class DashboardController {
 
+    @FXML
+    private Button settingsButton;
     @FXML
     private VBox addQuizBox;
     @FXML
@@ -67,5 +70,17 @@ public class DashboardController {
             }
         });
 
+    }
+    @FXML
+    private void settingsPressed() throws IOException {
+        try {
+            Stage stage = (Stage) settingsButton.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
