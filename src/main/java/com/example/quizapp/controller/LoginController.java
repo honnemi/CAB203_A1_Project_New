@@ -1,9 +1,8 @@
-package com.example.addressbook.controller;
+package com.example.quizapp.controller;
 
 
-import com.example.addressbook.HelloApplication;
-import com.example.addressbook.model.SQLiteConnectionLive;
-import com.example.addressbook.model.SQLiteUserDAOLive;
+import com.example.quizapp.HelloApplication;
+import com.example.quizapp.model.SQLiteUserDAOLive;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,7 +28,7 @@ public class LoginController {
             System.out.println("Login successful!");
             errorLabel.setVisible(false);
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/addressbook/Dashboard/Dashboard.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
                 Scene dashboardScene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 stage.setScene(dashboardScene);

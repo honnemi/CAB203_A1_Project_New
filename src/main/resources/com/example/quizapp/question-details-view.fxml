@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<VBox alignment="TOP_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+<VBox spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.quizapp.controller.QuestionDetailsController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <Label fx:id="quizName"></Label>
-    <ScrollPane fx:id="questions"></ScrollPane>
+    <Label fx:id="quizName"/>
+    <ScrollPane fx:id="questions"/>
     <HBox alignment="CENTER_RIGHT">
         <Button fx:id="backToResultsButton" onAction="#backToResults">Back to results</Button>
     </HBox>

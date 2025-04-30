@@ -1,12 +1,12 @@
-package com.example.addressbook.model;
+package com.example.quizapp.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SQLiteConnectionLive {
+public class SQLiteUserConnectionLive {
     private static Connection instance = null;
 
-    private SQLiteConnectionLive() {
+    private SQLiteUserConnectionLive() {
         String url = "jdbc:sqlite:users.db";
         try {
             instance = DriverManager.getConnection(url);
@@ -17,7 +17,7 @@ public class SQLiteConnectionLive {
 
     public static Connection getInstance() {
         if (instance == null) {
-            new SQLiteConnectionLive();
+            new SQLiteUserConnectionLive();
         }
         return instance;
     }

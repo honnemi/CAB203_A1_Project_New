@@ -7,9 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.addressbook.controller.DashboardController">
-
-    <!-- Top navigation bar -->
+            fx:controller="com.example.quizapp.controller.DashboardController">
     <top>
         <HBox spacing="15" style="-fx-background-color: #2c2c2c; -fx-padding: 10;">
             <Label text="dashboard" style="-fx-text-fill: white; -fx-font-size: 16px;" />
@@ -19,20 +17,13 @@
             <Button text="⚙" />
         </HBox>
     </top>
-
-    <!-- Main content area -->
     <center>
         <VBox spacing="15" style="-fx-padding: 20;">
-            <!-- Title -->
             <Label text="MY QUIZZES" style="-fx-font-size: 20px;" />
-
-            <!-- Sort option -->
             <HBox spacing="10">
                 <Label text="Sort by:" />
-                <ComboBox fx:id="sortDropdown" prefWidth="150" />
+                <ComboBox fx:id="topicDropdown" prefWidth="150" />
             </HBox>
-
-            <!-- Quiz card container -->
             <HBox spacing="20" alignment="CENTER_LEFT">
                 <VBox fx:id="addQuizBox"
                       alignment="CENTER"
@@ -41,22 +32,18 @@
                     <Label text="+" style="-fx-font-size: 30;" />
                 </VBox>
             </HBox>
-
-            <!-- My Progress -->
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="MY PROGRESS" style="-fx-font-size: 16px;" />
-                <Button text=">>" />
+                <Button fx:id="viewProgressBtn" text="View Progress" />
             </HBox>
         </VBox>
     </center>
-
-    <!-- Logout at the bottom right -->
     <bottom>
         <HBox alignment="BOTTOM_RIGHT">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Hyperlink text="Log out" />
+            <Hyperlink fx:id="logoutLink" text="Log out" />
         </HBox>
     </bottom>
 

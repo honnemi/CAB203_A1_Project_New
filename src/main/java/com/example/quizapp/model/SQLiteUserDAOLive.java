@@ -1,4 +1,4 @@
-package com.example.addressbook.model;
+package com.example.quizapp.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ public class SQLiteUserDAOLive implements IUserDAO {
     private Connection connection;
 
     public SQLiteUserDAOLive() {
-        connection = SQLiteConnectionLive.getInstance();
+        connection = SQLiteUserConnectionLive.getInstance();
         createTable();
     }
 

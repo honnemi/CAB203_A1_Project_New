@@ -1,4 +1,4 @@
-package com.example.addressbook.model;
+package com.example.quizapp.model;
 
 
 // User class with getters and setters for
