@@ -73,7 +73,7 @@ public class ResultsController {
             VBox questionContainer = new VBox();
 
             // Access and display question number and text for current question
-            Label questionNumber = new Label("Question" + (i + 1));
+            Label questionNumber = new Label("Question " + (i + 1));
             Label question = new Label(currentQuestion.getQuestionText());
 
             // Group both into a container for each question
@@ -106,6 +106,8 @@ public class ResultsController {
     private void backToQuiz() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
         Scene quizPage = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        QuestionsController controller = fxmlLoader.getController();
+        controller.setQuiz(currentAttempt.getQuiz());
         Stage stage = (Stage) retakeQuizButton.getScene().getWindow();
         stage.setScene(quizPage);
         stage.setTitle("Quiz");

@@ -4,6 +4,7 @@ import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.AppState;
 import com.example.quizapp.model.QuizInitConfig;
 import com.example.quizapp.model.QuizTakingUtil;
+import com.example.quizapp.model.quizAppAlert;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -12,23 +13,33 @@ import javafx.stage.FileChooser;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.File;
+import static com.example.quizapp.model.QuizInitConfig.readLinesFromFile;
 
 public class QuizInitController {
 
-    @FXML private VBox uploadBox;
-    @FXML private Label errorLabel;
-    @FXML private Slider difficultySlider;
-    @FXML private ToggleButton q1to10;
-    @FXML private ToggleButton q10to20;
-    @FXML private ToggleButton q20to30;
-    @FXML private Button startQuizBtn;
-    @FXML private Button backToDashboardBtn;
+    @FXML
+    private VBox uploadBox;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private Slider difficultySlider;
+    @FXML
+    private ToggleButton q1to10;
+    @FXML
+    private ToggleButton q10to20;
+    @FXML
+    private ToggleButton q20to30;
+    @FXML
+    private Button startQuizBtn;
+    @FXML
+    private Button backToDashboardBtn;
 
 
     private File selectedFile;
     private String questionRange;
+    private String uploadedFileContent;
+    private String fileContent;
 
     @FXML
     public void initialize() {
@@ -50,6 +61,12 @@ public class QuizInitController {
             if (selectedFile != null) {
                 errorLabel.setText("Selected: " + selectedFile.getName());
                 errorLabel.setVisible(true);
+                try {
+                    uploadedFileContent = readLinesFromFile(selectedFile.getAbsolutePath());
+                    System.out.print("\n" + uploadedFileContent);
+                } catch (Exception error) {
+                    error.printStackTrace();
+                }
             } else {
                 errorLabel.setText("No file selected.");
                 errorLabel.setVisible(true);
@@ -109,5 +126,7 @@ public class QuizInitController {
         System.out.println("Questions: " + config.getQuestionRange());
     }
 
-
 }
+
+
+

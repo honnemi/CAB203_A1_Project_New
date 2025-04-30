@@ -14,7 +14,7 @@
             <Region HBox.hgrow="ALWAYS" />
             <ImageView fitWidth="30" fitHeight="30" />
             <Label text="User" style="-fx-text-fill: white;" />
-            <Button text="⚙" />
+            <Button fx:id="settingsButton" text="⚙" onAction="#settingsPressed"/>
         </HBox>
     </top>
     <center>
