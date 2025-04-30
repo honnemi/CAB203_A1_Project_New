@@ -1,2 +1,0 @@
-Test File 2
-This file is used for testing the QuizInitConfig class.

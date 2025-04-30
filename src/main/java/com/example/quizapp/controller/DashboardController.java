@@ -1,5 +1,6 @@
 package com.example.quizapp.controller;
 
+import com.example.quizapp.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,8 @@ import java.io.IOException;
 
 public class DashboardController {
 
+    @FXML
+    private Button settingsButton;
     @FXML
     private VBox addQuizBox;
     @FXML
@@ -48,7 +51,7 @@ public class DashboardController {
             String selectedTopic = topicDropdown.getValue();
             if (selectedTopic != null) {
                 System.out.println("Viewing progress for topic: " + selectedTopic);
-                // openProgressPage(selectedTopic);
+                // openProgressPage(selectedTopic); -- adding a navigation for the selected topic progress page
             } else {
                 System.out.println("Please select a topic first.");
             }
@@ -58,7 +61,6 @@ public class DashboardController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/login-view.fxml"));
                 Scene loginScene = new Scene(loader.load(), 900, 600);
-
                 Stage stage = (Stage) logoutLink.getScene().getWindow();
                 stage.setScene(loginScene);
                 stage.setTitle("Login");
@@ -68,5 +70,17 @@ public class DashboardController {
             }
         });
 
+    }
+    @FXML
+    private void settingsPressed() throws IOException {
+        try {
+            Stage stage = (Stage) settingsButton.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
