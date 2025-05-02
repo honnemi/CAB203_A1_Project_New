@@ -16,6 +16,7 @@ import javafx.util.Duration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class SettingsController {
@@ -43,16 +44,14 @@ public class SettingsController {
     private PasswordField passwordField;
     @FXML
     private PasswordField newPasswordField;
+    @FXML
+    private PasswordField confirmPasswordField;
 
     @FXML
     private Button toPasswordButton;
 
     @FXML
-    private Label passwordMessageBox;
-    @FXML
     private Button changePasswordButton;
-
-
 
 
     public void settingsBackPressed(ActionEvent actionEvent) {
@@ -144,16 +143,33 @@ public class SettingsController {
 
 
     @FXML
-    public void handleChangePassword() {
-        setMessageBox("Change password clicked", 2);
+    public void handleChangePassword() throws IOException {
         String oldPassword = passwordField.getText();
         String newPassword = newPasswordField.getText();
-        //Make new user with a different password or email. this then updates it in the database.
-        //must do create new user code, base don the user userName and email from User currentUser
+        String confirmPassword = confirmPasswordField.getText();
+
         User currentUser = CurrentUser.getInstance();
-        new SQLiteUserDAOLive().updateUser(currentUser);
-        //User newUser = new User()
-        //SQLiteUserDAOLive.updateUser()
+        String currentUserName = currentUser.getUserName();
+        String currentEmail = currentUser.getEmail();
+        String currentPassword = currentUser.getPassword();
+
+        if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            quizAppAlert emptyAlert = new quizAppAlert();
+            emptyAlert.alert("Error", "You are missing fields!", "Please ensure all password fields are filled.");
+        } else if (!newPassword.equals(confirmPassword)) {
+            quizAppAlert matchingAlert = new quizAppAlert();
+            matchingAlert.alert("Error", "Passwords do not match!", "Please confirm your new password.");
+        } else if (!Objects.equals(oldPassword, currentPassword)) {
+            quizAppAlert incorrectAlert = new quizAppAlert();
+            incorrectAlert.alert("Error", "Old password is incorrect!", "Please ensure your old password is correct.");
+        } else {
+            new User(currentUserName, newPassword, currentEmail);
+            new SQLiteUserDAOLive().updateUser(currentUser);
+            Stage stage = (Stage) changePasswordButton.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
     }
 
 
@@ -163,5 +179,4 @@ public class SettingsController {
         waiting.setOnFinished(event -> messageBox.setText(""));
         waiting.play();
     }
-
 }
