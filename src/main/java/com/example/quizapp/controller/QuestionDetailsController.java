@@ -59,7 +59,7 @@ public class QuestionDetailsController {
             HBox resultsContainer = new HBox();
 
             // Display and access question number and text for current question
-            Label questionNumber = new Label("Question" + (i + 1));
+            Label questionNumber = new Label("Question " + (i + 1));
             Label question = new Label(currentQuestion.getQuestionText());
 
             // Get index for the selected answer and correct answer
@@ -85,7 +85,12 @@ public class QuestionDetailsController {
             }
 
             // Display selected and correct answers in text
-            Label yourAnswerLabel = new Label("Your answer: " + answerLetter(yourAnswer));
+            Label yourAnswerLabel;
+            if (yourAnswer == -1) {
+                yourAnswerLabel = new Label("Your answer: None");
+            } else {
+                yourAnswerLabel = new Label("Your answer: " + answerLetter(yourAnswer));
+            }
             Label correctAnswerLabel = new Label("Correct answer: " + answerLetter(correctAnswer));
 
             // Display horizontally instead of vertically

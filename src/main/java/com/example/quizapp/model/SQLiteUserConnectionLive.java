@@ -8,8 +8,10 @@ public class SQLiteUserConnectionLive {
 
     private SQLiteUserConnectionLive() {
         String url = "jdbc:sqlite:users.db";
+
         try {
             instance = DriverManager.getConnection(url);
+            instance.createStatement().execute("PRAGMA foreign_keys = ON");
         } catch (SQLException sqlEx) {
             System.err.println(sqlEx);
         }

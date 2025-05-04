@@ -101,7 +101,7 @@ public class QuestionsController {
     }
 
     public void setQuiz(Quiz quiz) { // must be called before switching to questions page
-        this.quizAttempt = new QuizAttempt(quiz);
+        quizAttempt = new QuizAttempt(quiz);
         quizNameLabel.setText(quiz.getQuizName());
         updateTracker();
         loadQuestions();
