@@ -2,45 +2,35 @@ package com.example.quizapp.controller;
 
 import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.File;
+
 import static com.example.quizapp.model.QuizInitConfig.readLinesFromFile;
 
 public class QuizInitController {
 
-    @FXML
-    private VBox uploadBox;
-    @FXML
-    private Label errorLabel;
-    @FXML
-    private Slider difficultySlider;
-    @FXML
-    private ToggleButton q1to10;
-    @FXML
-    private ToggleButton q10to20;
-    @FXML
-    private ToggleButton q20to30;
-    @FXML
-    private Button startQuizBtn;
-    @FXML
-    private Button backToDashboardBtn;
-    @FXML
-    private TextField topicField;
-
-
+    @FXML private VBox uploadBox;
+    @FXML private Label errorLabel;
+    @FXML private Slider difficultySlider;
+    @FXML private ToggleButton q1to10;
+    @FXML private ToggleButton q10to20;
+    @FXML private ToggleButton q20to30;
+    @FXML private Button startQuizBtn;
+    @FXML private Button backToDashboardBtn;
+    @FXML private TextField topicField;
 
     private File selectedFile;
     private String questionRange;
     private String uploadedFileContent;
-    private String fileContent;
-    String difficultyLabel;
 
     @FXML
     public void initialize() {
@@ -55,6 +45,7 @@ public class QuizInitController {
                 questionRange = ((ToggleButton) newToggle).getText();
             }
         });
+
         uploadBox.setOnMouseClicked((MouseEvent e) -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Study Material File");
@@ -77,66 +68,49 @@ public class QuizInitController {
         });
 
         startQuizBtn.setOnAction(e -> {
-            if (selectedFile == null) {
-                errorLabel.setText("Please upload a file first!");
-                errorLabel.setVisible(true);
-                return;
-            }
+            if (!validateInputs()) return;
 
-            if (questionRange == null || questionRange.isEmpty()) {
-                errorLabel.setText("Please select question range.");
-                errorLabel.setVisible(true);
-                return;
-            }
+            String topic = topicField.getText().trim();
+            String difficulty = getDifficultyLabel(difficultySlider.getValue());
 
-            String topic = topicField.getText();
-            if (topic == null || topic.trim().isEmpty()) {
-                errorLabel.setText("Please enter a topic.");
-                errorLabel.setVisible(true);
-                return;
-            }
-            String difficultyLabel = getDifficultyLabel(difficultySlider.getValue());
             String prompt = "Create a " + questionRange + "-question quiz on " + topic +
-                    " for high school students with " + difficultyLabel + " difficulty using this study material:\n\n" +
+                    " for high school students with " + difficulty + " difficulty using this study material:\n\n" +
                     uploadedFileContent;
-            String jsonResponse = aiQuizGenerator.generateQuiz(prompt);
-            System.out.println("AI Quiz Response:\n" + jsonResponse);
 
             Alert loading = new Alert(Alert.AlertType.INFORMATION);
             loading.setHeaderText("Generating Quiz...");
-            loading.setContentText("Please wait while AI generates your quiz.");
-            loading.getDialogPane().lookupButton(ButtonType.OK).setDisable(true); // Disable OK button
+            loading.setContentText("Please wait while the AI generates your quiz.");
+            loading.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
             loading.show();
 
             new Thread(() -> {
-                String aiResponse = aiQuizGenerator.generateQuiz(prompt);
-                String quizName = topicField.getText();
-                String quizTopic = topicField.getText();
-                String difficulty = getDifficultyLabel(difficultySlider.getValue());
+                String jsonResponse = aiQuizGenerator.generateQuiz(prompt);
+                System.out.println("Raw AI Response:\n" + jsonResponse);
+                Quiz quiz = QuizTakingUtil.parseAIResponse(jsonResponse, topic, topic, difficulty);
 
-                Quiz quiz = QuizTakingUtil.parseAIResponse(jsonResponse, quizName, quizTopic, difficultyLabel);
-
-                javafx.application.Platform.runLater(() -> {
+                Platform.runLater(() -> {
                     loading.close();
-
+                    if (quiz.getLength() == 0) {
+                        errorLabel.setText("AI did not return any questions.");
+                        return;
+                    }
                     try {
                         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
                         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
 
                         QuestionsController controller = loader.getController();
-                        controller.setQuiz(quiz); // only call once, with parsed quiz
+                        controller.setQuiz(quiz);
 
                         Stage stage = (Stage) startQuizBtn.getScene().getWindow();
                         stage.setScene(scene);
                         stage.setTitle("Quiz");
                     } catch (Exception ex) {
                         ex.printStackTrace();
+                        errorLabel.setText("Failed to load quiz screen.");
                     }
                 });
             }).start();
         });
-
-
 
         backToDashboardBtn.setOnAction(e -> {
             try {
@@ -150,7 +124,28 @@ public class QuizInitController {
                 errorLabel.setText("Failed to return to dashboard.");
             }
         });
+    }
 
+    private boolean validateInputs() {
+        if (selectedFile == null) {
+            errorLabel.setText("Please upload a file first!");
+            errorLabel.setVisible(true);
+            return false;
+        }
+
+        if (questionRange == null || questionRange.isEmpty()) {
+            errorLabel.setText("Please select question range.");
+            errorLabel.setVisible(true);
+            return false;
+        }
+
+        if (topicField.getText() == null || topicField.getText().trim().isEmpty()) {
+            errorLabel.setText("Please enter a topic.");
+            errorLabel.setVisible(true);
+            return false;
+        }
+
+        return true;
     }
 
     public static String getDifficultyLabel(double sliderValue) {
@@ -158,19 +153,4 @@ public class QuizInitController {
         if (sliderValue < 2.5) return "medium";
         return "hard";
     }
-//    private void storeQuizInit() {
-//        double difficulty = difficultySlider.getValue();
-//
-//        QuizInitConfig config = new QuizInitConfig(selectedFile, difficulty, questionRange);
-//        AppState.currentQuizConfig = config;
-//
-//        System.out.println("Quiz config stored:");
-//        System.out.println("File: " + config.getUploadedFile().getName());
-//        System.out.println("Difficulty: " + config.getDifficulty());
-//        System.out.println("Questions: " + config.getQuestionRange());
-//    }
-
 }
-
-
-

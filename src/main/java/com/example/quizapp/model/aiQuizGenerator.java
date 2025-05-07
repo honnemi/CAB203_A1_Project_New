@@ -38,7 +38,7 @@ public class aiQuizGenerator {
                     .put("required", new org.json.JSONArray().put("questions"));
 
             JSONObject requestJson = new JSONObject()
-                    .put("model", "llama3:3.2")
+                    .put("model", "llama3.2:latest")
                     .put("messages", new org.json.JSONArray().put(new JSONObject()
                             .put("role", "user")
                             .put("content", prompt)))
