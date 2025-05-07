@@ -77,11 +77,8 @@ public class QuizInitController {
                     " for high school students with " + difficulty + " difficulty using this study material:\n\n" +
                     uploadedFileContent;
 
-            Alert loading = new Alert(Alert.AlertType.INFORMATION);
-            loading.setHeaderText("Generating Quiz...");
-            loading.setContentText("Please wait while the AI generates your quiz.");
-            loading.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
-            loading.show();
+            Stage loadingStage = loadingSpinner();
+            loadingStage.show();
 
             new Thread(() -> {
                 String jsonResponse = aiQuizGenerator.generateQuiz(prompt);
@@ -89,7 +86,7 @@ public class QuizInitController {
                 Quiz quiz = QuizTakingUtil.parseAIResponse(jsonResponse, topic, topic, difficulty);
 
                 Platform.runLater(() -> {
-                    loading.close();
+                    loadingStage.close();
                     if (quiz.getLength() == 0) {
                         errorLabel.setText("AI did not return any questions.");
                         return;
@@ -153,4 +150,27 @@ public class QuizInitController {
         if (sliderValue < 2.5) return "medium";
         return "hard";
     }
+
+    private Stage loadingSpinner() {
+        ProgressIndicator spinner = new ProgressIndicator();
+        spinner.setPrefSize(100, 100);
+
+        Label label = new Label("Generating Quiz...");
+        VBox vbox = new VBox(spinner, label);
+        vbox.setSpacing(20);
+        vbox.setStyle("-fx-background-color: white; -fx-padding: 30; -fx-alignment: center;");
+
+        Scene scene = new Scene(vbox);
+        Stage dialog = new Stage();
+        dialog.setScene(scene);
+        dialog.setTitle("Please Wait");
+        dialog.setWidth(250);
+        dialog.setHeight(200);
+        dialog.setResizable(false);
+        dialog.initOwner(startQuizBtn.getScene().getWindow());
+        dialog.setAlwaysOnTop(true);
+
+        return dialog;
+    }
+
 }

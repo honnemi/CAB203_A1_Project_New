@@ -18,7 +18,7 @@ public class aiQuizGenerator {
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
 
-            // Create request JSON
+            // formatting a specific question to the chat to get the structured response -- got info from llama api website for reference
             JSONObject formatSpec = new JSONObject()
                     .put("type", "object")
                     .put("properties", new JSONObject()
@@ -46,12 +46,12 @@ public class aiQuizGenerator {
                     .put("format", formatSpec)
                     .put("options", new JSONObject().put("temperature", 0));
 
-            // Send it
+            // send the request
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(requestJson.toString().getBytes());
             }
 
-            // Read response
+            // read the response
             try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
                 StringBuilder sb = new StringBuilder();
                 String responseLine;
