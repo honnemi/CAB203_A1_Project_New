@@ -56,17 +56,13 @@ public class QuizTakingUtil {
                 for (int j = 0; j < optionsArray.length(); j++) {
                     options.add(optionsArray.getString(j));
                 }
-
                 int correctIndex = q.getInt("correctIndex");
-
                 quiz.addQuestion(new QuizQuestion(questionText, options, correctIndex));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Failed: " + response);
         }
-
         return quiz;
     }
 }
