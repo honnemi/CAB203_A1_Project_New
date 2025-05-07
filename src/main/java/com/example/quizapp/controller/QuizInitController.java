@@ -1,10 +1,7 @@
 package com.example.quizapp.controller;
 
 import com.example.quizapp.HelloApplication;
-import com.example.quizapp.model.AppState;
-import com.example.quizapp.model.QuizInitConfig;
-import com.example.quizapp.model.QuizTakingUtil;
-import com.example.quizapp.model.quizAppAlert;
+import com.example.quizapp.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -34,6 +31,9 @@ public class QuizInitController {
     private Button startQuizBtn;
     @FXML
     private Button backToDashboardBtn;
+    @FXML
+    private TextField topicField;
+
 
 
     private File selectedFile;
@@ -48,11 +48,21 @@ public class QuizInitController {
         q10to20.setToggleGroup(group);
         q20to30.setToggleGroup(group);
         errorLabel.setVisible(false);
+
         group.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
             if (newToggle != null) {
                 questionRange = ((ToggleButton) newToggle).getText();
             }
         });
+        String difficultyLabel;
+        double diffValue = difficultySlider.getValue();
+        if (diffValue < 1.5) {
+            difficultyLabel = "easy";
+        } else if (diffValue < 2.5) {
+            difficultyLabel = "medium";
+        } else {
+            difficultyLabel = "hard";
+        }
         uploadBox.setOnMouseClicked((MouseEvent e) -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Study Material File");
@@ -63,43 +73,77 @@ public class QuizInitController {
                 errorLabel.setVisible(true);
                 try {
                     uploadedFileContent = readLinesFromFile(selectedFile.getAbsolutePath());
-                    System.out.print("\n" + uploadedFileContent);
+                    System.out.println("\nUploaded File Content:\n" + uploadedFileContent);
                 } catch (Exception error) {
                     error.printStackTrace();
+                    errorLabel.setText("Error reading file.");
                 }
             } else {
                 errorLabel.setText("No file selected.");
                 errorLabel.setVisible(true);
             }
         });
+
         startQuizBtn.setOnAction(e -> {
-            // commented out returns and storeQuizInit so no file or question range needed currently
             if (selectedFile == null) {
                 errorLabel.setText("Please upload a file first!");
-                //return;
+                errorLabel.setVisible(true);
+                return;
             }
 
             if (questionRange == null || questionRange.isEmpty()) {
                 errorLabel.setText("Please select question range.");
-                //return;
+                errorLabel.setVisible(true);
+                return;
             }
 
-            // storeQuizInit();
-
-            // move to questions page
-            try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
-                Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-                QuestionsController controller = loader.getController();
-                // currently passes in quiz with default values
-                controller.setQuiz(QuizTakingUtil.generateDefaultQuiz(10));
-                Stage stage = (Stage) startQuizBtn.getScene().getWindow();
-                stage.setScene(scene);
-                stage.setTitle("Quiz");
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            String topic = topicField.getText();
+            if (topic == null || topic.trim().isEmpty()) {
+                errorLabel.setText("Please enter a topic.");
+                errorLabel.setVisible(true);
+                return;
             }
+            String prompt = "Create a " + questionRange + "-question quiz on " + topic +
+                    " for high school students with " + difficultyLabel + " difficulty using this study material:\n\n" +
+                    uploadedFileContent;
+            String aiQuizResponse = com.example.quizapp.model.aiQuizGenerator.generateQuiz(prompt);
+            System.out.println("AI Quiz Response:\n" + aiQuizResponse);
+
+            Alert loading = new Alert(Alert.AlertType.INFORMATION);
+            loading.setHeaderText("Generating Quiz...");
+            loading.setContentText("Please wait while AI generates your quiz.");
+            loading.getDialogPane().lookupButton(ButtonType.OK).setDisable(true); // Disable OK button
+            loading.show();
+
+            new Thread(() -> {
+                String aiResponse = aiQuizGenerator.generateQuiz(prompt);
+                String quizName = topicField.getText();
+                String quizTopic = topicField.getText();
+                String difficulty = String.valueOf(difficultySlider.getValue());
+
+                Quiz quiz = QuizTakingUtil.parseAIResponse(aiResponse, quizName, quizTopic, difficulty);
+
+
+                javafx.application.Platform.runLater(() -> {
+                    loading.close();
+
+                    try {
+                        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("questions-view.fxml"));
+                        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+
+                        QuestionsController controller = loader.getController();
+                        controller.setQuiz(quiz); // only call once, with parsed quiz
+
+                        Stage stage = (Stage) startQuizBtn.getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.setTitle("Quiz");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+            }).start();
         });
+
         backToDashboardBtn.setOnAction(e -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
@@ -114,17 +158,18 @@ public class QuizInitController {
         });
     }
 
-    private void storeQuizInit() {
-        double difficulty = difficultySlider.getValue();
 
-        QuizInitConfig config = new QuizInitConfig(selectedFile, difficulty, questionRange);
-        AppState.currentQuizConfig = config;
-
-        System.out.println("Quiz config stored:");
-        System.out.println("File: " + config.getUploadedFile().getName());
-        System.out.println("Difficulty: " + config.getDifficulty());
-        System.out.println("Questions: " + config.getQuestionRange());
-    }
+//    private void storeQuizInit() {
+//        double difficulty = difficultySlider.getValue();
+//
+//        QuizInitConfig config = new QuizInitConfig(selectedFile, difficulty, questionRange);
+//        AppState.currentQuizConfig = config;
+//
+//        System.out.println("Quiz config stored:");
+//        System.out.println("File: " + config.getUploadedFile().getName());
+//        System.out.println("Difficulty: " + config.getDifficulty());
+//        System.out.println("Questions: " + config.getQuestionRange());
+//    }
 
 }
 

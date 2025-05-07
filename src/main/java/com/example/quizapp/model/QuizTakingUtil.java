@@ -1,5 +1,6 @@
 package com.example.quizapp.model;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class QuizTakingUtil {
@@ -34,4 +35,42 @@ public class QuizTakingUtil {
         }
         return quiz;
     }
+
+    // gets the ai response and turns it into questions
+    public static Quiz parseAIResponse(String response, String quizName, String topic, String difficulty) {
+        Quiz quiz = new Quiz(quizName, topic, difficulty);
+        Scanner scanner = new Scanner(response);
+        String line;
+        String questionText = null;
+        ArrayList<String> options = new ArrayList<>();
+        int correctIndex = 0;
+
+        while (scanner.hasNextLine()) {
+            line = scanner.nextLine().trim();
+
+            if (line.matches("Q\\d+:.*")) {
+                // a new question is starting
+                if (questionText != null && !options.isEmpty()) {
+                    quiz.addQuestion(new QuizQuestion(questionText, options, correctIndex));
+                    options = new ArrayList<>();
+                }
+                questionText = line.substring(line.indexOf(":") + 1).trim();
+
+            } else if (line.matches("[A-D]\\).*")) {
+                options.add(line.substring(3).trim()); // remove "A) " etc.
+
+            } else if (line.toLowerCase().startsWith("answer:")) {
+                String correctLetter = line.split(":")[1].trim();
+                correctIndex = correctLetter.charAt(0) - 'A';
+            }
+        }
+
+        // adding the final question
+        if (questionText != null && !options.isEmpty()) {
+            quiz.addQuestion(new QuizQuestion(questionText, options, correctIndex));
+        }
+
+        return quiz;
+    }
 }
+
