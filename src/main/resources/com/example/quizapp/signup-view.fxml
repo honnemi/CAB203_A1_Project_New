@@ -7,7 +7,7 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.quizapp.controller.SignUpController"
-      alignment="CENTER" spacing="15" prefWidth="350" prefHeight="400">
+      alignment="CENTER" spacing="25" prefWidth="350" prefHeight="400" stylesheets="@../css/stylesheet.css">
 
     <padding>
         <Insets top="25" right="25" bottom="25" left="25"/>
@@ -20,7 +20,7 @@
     <PasswordField fx:id="passwordField" promptText="Password" />
     <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" />
 
-    <HBox spacing="10" alignment="CENTER">
+    <HBox spacing="20" alignment="CENTER">
         <Button fx:id = "signupButton" text="Sign Up" onAction="#onSignUpClick"/>
         <Button fx:id="cancelButton" text = "Cancel" onAction="#onCancelClick"/>
     </HBox>

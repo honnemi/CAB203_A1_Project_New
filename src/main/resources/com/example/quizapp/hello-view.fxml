@@ -6,7 +6,9 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.ImageView?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizapp.controller.HelloController">
+<VBox alignment="CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quizapp.controller.HelloController" stylesheets="@../css/stylesheet.css"
+
+>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -18,7 +20,7 @@
     <HBox xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER">
         <ImageView fx:id="tutorWorm" fitWidth="100" fitHeight="100" preserveRatio="true" />
     </HBox>
-    <HBox alignment="CENTER" spacing="10.0">
+    <HBox alignment="CENTER" spacing="20.0">
         <Button fx:id="loginButton" onAction="#onLoginClick" text = "Login"/>
         <Button fx:id="signUpButton" onAction="#onSignUpClick"   text = "Sign Up"/>
     </HBox>
