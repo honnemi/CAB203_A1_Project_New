@@ -40,6 +40,7 @@ public class QuizInitController {
     private String questionRange;
     private String uploadedFileContent;
     private String fileContent;
+    String difficultyLabel;
 
     @FXML
     public void initialize() {
@@ -54,15 +55,6 @@ public class QuizInitController {
                 questionRange = ((ToggleButton) newToggle).getText();
             }
         });
-        String difficultyLabel;
-        double diffValue = difficultySlider.getValue();
-        if (diffValue < 1.5) {
-            difficultyLabel = "easy";
-        } else if (diffValue < 2.5) {
-            difficultyLabel = "medium";
-        } else {
-            difficultyLabel = "hard";
-        }
         uploadBox.setOnMouseClicked((MouseEvent e) -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Study Material File");
@@ -103,11 +95,12 @@ public class QuizInitController {
                 errorLabel.setVisible(true);
                 return;
             }
+            String difficultyLabel = getDifficultyLabel(difficultySlider.getValue());
             String prompt = "Create a " + questionRange + "-question quiz on " + topic +
                     " for high school students with " + difficultyLabel + " difficulty using this study material:\n\n" +
                     uploadedFileContent;
-            String aiQuizResponse = com.example.quizapp.model.aiQuizGenerator.generateQuiz(prompt);
-            System.out.println("AI Quiz Response:\n" + aiQuizResponse);
+            String jsonResponse = aiQuizGenerator.generateQuiz(prompt);
+            System.out.println("AI Quiz Response:\n" + jsonResponse);
 
             Alert loading = new Alert(Alert.AlertType.INFORMATION);
             loading.setHeaderText("Generating Quiz...");
@@ -119,10 +112,9 @@ public class QuizInitController {
                 String aiResponse = aiQuizGenerator.generateQuiz(prompt);
                 String quizName = topicField.getText();
                 String quizTopic = topicField.getText();
-                String difficulty = String.valueOf(difficultySlider.getValue());
+                String difficulty = getDifficultyLabel(difficultySlider.getValue());
 
-                Quiz quiz = QuizTakingUtil.parseAIResponse(aiResponse, quizName, quizTopic, difficulty);
-
+                Quiz quiz = QuizTakingUtil.parseAIResponse(jsonResponse, quizName, quizTopic, difficultyLabel);
 
                 javafx.application.Platform.runLater(() -> {
                     loading.close();
@@ -144,6 +136,8 @@ public class QuizInitController {
             }).start();
         });
 
+
+
         backToDashboardBtn.setOnAction(e -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
@@ -156,9 +150,14 @@ public class QuizInitController {
                 errorLabel.setText("Failed to return to dashboard.");
             }
         });
+
     }
 
-
+    public static String getDifficultyLabel(double sliderValue) {
+        if (sliderValue < 1.5) return "easy";
+        if (sliderValue < 2.5) return "medium";
+        return "hard";
+    }
 //    private void storeQuizInit() {
 //        double difficulty = difficultySlider.getValue();
 //

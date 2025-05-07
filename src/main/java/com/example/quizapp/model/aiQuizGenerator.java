@@ -1,8 +1,7 @@
 package com.example.quizapp.model;
+
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -10,19 +9,42 @@ public class aiQuizGenerator {
 
     public static String generateQuiz(String prompt) {
         String fullResponse = "";
+
         try {
-            URL url = new URL("http://localhost:11434/api/generate");
+            URL url = new URL("http://localhost:11434/api/chat");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
 
-            // Build JSON request
-            JSONObject requestJson = new JSONObject();
-            requestJson.put("model", "llama3:3.2");
-            requestJson.put("prompt", prompt);
-            requestJson.put("stream", false);
+            // Create request JSON
+            JSONObject formatSpec = new JSONObject()
+                    .put("type", "object")
+                    .put("properties", new JSONObject()
+                            .put("questions", new JSONObject()
+                                    .put("type", "array")
+                                    .put("items", new JSONObject()
+                                            .put("type", "object")
+                                            .put("properties", new JSONObject()
+                                                    .put("question", new JSONObject().put("type", "string"))
+                                                    .put("options", new JSONObject().put("type", "array").put("items", new JSONObject().put("type", "string")))
+                                                    .put("correctIndex", new JSONObject().put("type", "integer"))
+                                            )
+                                            .put("required", new org.json.JSONArray().put("question").put("options").put("correctIndex"))
+                                    )
+                            )
+                    )
+                    .put("required", new org.json.JSONArray().put("questions"));
+
+            JSONObject requestJson = new JSONObject()
+                    .put("model", "llama3:3.2")
+                    .put("messages", new org.json.JSONArray().put(new JSONObject()
+                            .put("role", "user")
+                            .put("content", prompt)))
+                    .put("stream", false)
+                    .put("format", formatSpec)
+                    .put("options", new JSONObject().put("temperature", 0));
 
             // Send it
             try (OutputStream os = conn.getOutputStream()) {
@@ -31,9 +53,13 @@ public class aiQuizGenerator {
 
             // Read response
             try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-                String responseLine = br.readLine();
-                JSONObject responseJson = new JSONObject(responseLine);
-                fullResponse = responseJson.getString("response");
+                StringBuilder sb = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    sb.append(responseLine);
+                }
+                JSONObject responseJson = new JSONObject(sb.toString());
+                fullResponse = responseJson.getJSONObject("message").getString("content");
             }
 
         } catch (Exception e) {
