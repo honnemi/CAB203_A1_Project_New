@@ -34,7 +34,7 @@
             <Insets />
          </VBox.margin>
       </ScrollPane>
-      <Button id="secondary-button" fx:id="dashboardButton" onAction="#onDashboardButtonPressed" mnemonicParsing="false" text="⬅  To home" translateY="-10" translateX="10"/>
+      <Button id="secondary-button" fx:id="dashboardButton" onAction="#onDashboardButtonPressed" mnemonicParsing="false" text="To dashboard" translateY="-10" translateX="10"/>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

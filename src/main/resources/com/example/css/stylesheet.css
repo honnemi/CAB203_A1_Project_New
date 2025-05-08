@@ -207,7 +207,7 @@
 }
 
 .scroll-pane {
-    -fx-border-color: '#FFFFFF';
+    -fx-border-color: '#FFFFFF';;
 }
 
 .default-color0.chart-pie { -fx-pie-color: '#6F3198'; }
@@ -217,4 +217,11 @@
    -fx-background-color: '#FFFFFF';
    -fx-border-color: '#FFFFFF';
 }
+
+.chart-pie {
+    -fx-border-width: 0;
+}
+
+.default-color0.chart-series-line { -fx-stroke: '#6f3198'; }
+.default-color0.chart-line-symbol { -fx-background-color: '#6f3198', '#FFFFFF'; }
 

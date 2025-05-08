@@ -15,7 +15,7 @@
     <VBox spacing="20">
         <HBox alignment="CENTER_RIGHT" spacing="20">
             <Button id="small-button" fx:id="retakeQuizButton" onAction="#backToQuiz">Retake quiz</Button>
-            <Button id="small-button" fx:id="exitButton" onAction="#exitResults" text="⬅  To home" style="-fx-background-color: #17202A"/>
+            <Button id="small-button" fx:id="exitButton" onAction="#exitResults" text="To dashboard" style="-fx-background-color: #17202A"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <PieChart fx:id="resultGraph"/>
@@ -25,7 +25,7 @@
             <Button id="small-button" fx:id="progressReportButton" onAction="#toProgressReport">View progress</Button>
             <Button id="small-button" fx:id="questionDetailsButton" onAction="#toQuestionDetails">View questions</Button>
         </HBox>
-        <Label id="bolded-text">Question Breakdown</Label>
+        <Label id="bolded-text">Questions</Label>
         <ScrollPane id="questions-list" fx:id="questions"/>
     </VBox>
 </VBox>

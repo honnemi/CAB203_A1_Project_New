@@ -60,6 +60,7 @@ public class QuestionDetailsController {
 
             // Display and access question number and text for current question
             Label questionNumber = new Label("Question " + (i + 1));
+            questionNumber.setStyle("-fx-font-weight: 700");
             Label question = new Label(currentQuestion.getQuestionText());
 
             // Get index for the selected answer and correct answer
@@ -92,6 +93,8 @@ public class QuestionDetailsController {
                 yourAnswerLabel = new Label("Your answer: " + answerLetter(yourAnswer));
             }
             Label correctAnswerLabel = new Label("Correct answer: " + answerLetter(correctAnswer));
+            yourAnswerLabel.setStyle("-fx-font-weight: 700");
+            correctAnswerLabel.setStyle("-fx-text-fill: #6f3198; -fx-font-weight: 700");
 
             // Display horizontally instead of vertically
             resultsContainer.getChildren().addAll(yourAnswerLabel, correctAnswerLabel);
@@ -100,11 +103,12 @@ public class QuestionDetailsController {
             // Group each questions into a container
             questionContainer.getChildren().addAll(questionNumber, question, answerContainer, resultsContainer);
             questionContainer.setSpacing(10);
+            questionContainer.setPadding(new Insets(10));
+            questionContainer.setStyle("-fx-background-color: #EAECEE; -fx-background-radius: 10;");
 
             // Group all questions into one container
             allQuestions.getChildren().addAll(questionContainer);
             allQuestions.setSpacing(20);
-            allQuestions.setPadding(new Insets(10, 10, 10, 10));
         }
 
         // Set larger container as content of scroll pane

@@ -22,6 +22,7 @@ public class quizAppAlert {
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);
+
             return alert;
         }
 
