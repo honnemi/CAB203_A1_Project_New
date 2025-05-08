@@ -22,6 +22,7 @@ public class HelloApplication extends Application {
         Image image = new Image(getClass().getResource("/com/example/images/tutorworm-default.png").toString());
         stage.getIcons().add(image);
         stage.setScene(scene);
+        stage.setTitle("TutorWorm");
         stage.show();
     }
 

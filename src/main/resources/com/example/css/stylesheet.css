@@ -6,7 +6,6 @@
     -fx-text-fill: '#17202A';
     -fx-background-color: '#FFFFFF';
     -fx-accent: '#6F3198';
-    -fx-focus-color: '#6F3198';
     -fx-cell-hover-color: '#6F3198';
 }
 
@@ -69,7 +68,7 @@
     -fx-font-weight: 900;
 }
 
-#user-heading {
+#bolded-text {
     -fx-font-weight: 700;
 }
 
@@ -100,6 +99,40 @@
     -fx-font-weight: 700;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
+}
+
+#upload-box {
+    -fx-alignment: "CENTER";
+    -fx-max-width: 600;
+    -fx-pref-height: 175;
+    -fx-border-color: '#17202A';
+    -fx-border-style: dashed;
+    -fx-border-radius: 10;
+    -fx-background-color: '#EAECEE';
+    -fx-background-radius: 10;
+}
+
+#difficulty-slider {
+    -fx-max-width: 600;
+}
+
+.toggle-button {
+    -fx-background-color: '#FFFFFF';
+    -fx-background-radius: 10;
+    -fx-border-color: '#17202A';
+    -fx-border-radius: 10;
+}
+
+.toggle-button:selected {
+    -fx-background-color: '#EAECEE';
+}
+
+.slider .track {
+    -fx-background-color: '#EAECEE';
+}
+
+.slider .thumb {
+    -fx-background-color: '#6F3198';
 }
 
 

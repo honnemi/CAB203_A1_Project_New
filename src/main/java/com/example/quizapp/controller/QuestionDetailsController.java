@@ -116,6 +116,7 @@ public class QuestionDetailsController {
         Stage stage = (Stage) backToResultsButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("results-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setTitle("Quiz Results");
         stage.setScene(scene);
     }
 

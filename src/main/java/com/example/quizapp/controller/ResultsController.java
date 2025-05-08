@@ -105,6 +105,7 @@ public class ResultsController {
         Stage stage = (Stage) questionDetailsButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("question-details-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setTitle("Question Details");
         stage.setScene(scene);
     }
 
