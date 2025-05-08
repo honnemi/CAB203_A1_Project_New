@@ -162,12 +162,15 @@ public class SettingsController {
             quizAppAlert incorrectAlert = new quizAppAlert();
             incorrectAlert.alert("Error", "Old password is incorrect!", "Please ensure your old password is correct.");
         } else {
-            new User(currentUserName, newPassword, currentEmail);
-            new SQLiteUserDAOLive().updateUser(currentUser);
+            User newUser = new User(currentUserName, newPassword, currentEmail);
+            new SQLiteUserDAOLive().updateUser(newUser);
             Stage stage = (Stage) changePasswordButton.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("settingsProfile-View.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
             stage.setScene(scene);
+
+            quizAppAlert changedPass = new quizAppAlert();
+            changedPass.alert("Password Changed", "Your password was successfully changed!", "");
         }
     }
 
