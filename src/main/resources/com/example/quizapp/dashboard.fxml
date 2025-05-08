@@ -34,7 +34,7 @@
             </HBox>
             <HBox spacing="30" alignment="CENTER_LEFT">
                 <Label id="larger-heading" text="MY PROGRESS" />
-                <Button fx:id="viewProgressBtn" text="To progress report  ➡" />
+                <Button fx:id="viewProgressBtn" text="➡" style="-fx-font-size: 24; -fx-padding: 5; -fx-pref-width: 150"/>
             </HBox>
         </VBox>
     </center>

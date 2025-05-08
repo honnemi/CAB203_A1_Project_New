@@ -56,7 +56,7 @@ public class ResultsController {
                 new PieChart.Data("Correct", score),
                 new PieChart.Data("Incorrect", quizLength - score));
         resultGraph.setData(pieChartData);
-        resultGraph.setLabelsVisible(true);
+        resultGraph.setLabelsVisible(false);
 
         // Code to display list of questions for this current quiz attempt
 
@@ -80,6 +80,7 @@ public class ResultsController {
 
             // Access and display question number and text for current question
             Label questionNumber = new Label("Question " + (i + 1));
+            questionNumber.setStyle("-fx-font-weight: 700");
             Label question = new Label(currentQuestion.getQuestionText());
 
             // Group both into a container for each question

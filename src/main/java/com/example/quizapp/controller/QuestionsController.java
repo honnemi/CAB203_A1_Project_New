@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.scene.text.Font;
@@ -57,6 +58,7 @@ public class QuestionsController {
 
         Label questionNumberLabel = new Label("Question " + (questionIndex + 1));
         questionNumberLabel.setFont(new Font(14));
+        questionNumberLabel.setStyle("-fx-font-weight: 700;");
         Label questionTextLabel = new Label(question.getQuestionText());
         questionTextLabel.setFont(new Font(14));
 
@@ -85,7 +87,7 @@ public class QuestionsController {
             }
         });
 
-        questionDisplay.setStyle("-fx-background-color: #dddddd");
+        questionDisplay.setStyle("-fx-background-color: #EAECEE; -fx-background-radius: 10;");
         questionDisplay.setSpacing(5);
         questionDisplay.setPadding(new Insets(10));
 
@@ -138,6 +140,7 @@ public class QuestionsController {
     private void onDashboardButtonPressed() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit quiz?");
+        Image image = new Image(getClass().getResource("/com/example/images/tutorworm-default.png").toString());
         alert.setHeaderText(null);
         ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Exit");
         alert.setContentText(
