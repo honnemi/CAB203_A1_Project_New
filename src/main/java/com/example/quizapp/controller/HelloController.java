@@ -28,8 +28,8 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        System.out.println("Looking for image at: " + getClass().getResource("/com/example/images/tutorwormdefault.png"));
-        Image image = new Image(getClass().getResource("/com/example/images/tutorwormdefault.png").toString());
+        System.out.println("Looking for image at: " + getClass().getResource("/com/example/images/tutorworm-default.png"));
+        Image image = new Image(getClass().getResource("/com/example/images/tutorworm-default.png").toString());
         tutorWorm.setImage(image);
 
     }

@@ -12,7 +12,7 @@ public class quizAppAlert {
 
         public Alert createAlert(String title, String header, String content) throws IOException {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            Image image = new Image(getClass().getResource("/com/example/images/tutorwormdefault.png").toString());
+            Image image = new Image(getClass().getResource("/com/example/images/tutorworm-default.png").toString());
             ImageView imageView = new ImageView();
             imageView.setFitWidth(50);
             imageView.setFitHeight(50);

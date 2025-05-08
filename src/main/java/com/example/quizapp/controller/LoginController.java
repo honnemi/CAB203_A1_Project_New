@@ -32,7 +32,7 @@ public class LoginController {
             CurrentUser.setInstance(currentUser);
             errorLabel.setVisible(false);
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/quizapp/dashboard.fxml"));
                 Scene dashboardScene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 stage.setScene(dashboardScene);

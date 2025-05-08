@@ -4,7 +4,6 @@ import com.example.quizapp.HelloApplication;
 import com.example.quizapp.model.AppState;
 import com.example.quizapp.model.QuizInitConfig;
 import com.example.quizapp.model.QuizTakingUtil;
-import com.example.quizapp.model.quizAppAlert;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -102,7 +101,7 @@ public class QuizInitController {
         });
         backToDashboardBtn.setOnAction(e -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/Dashboard/Dashboard.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/dashboard.fxml"));
                 Scene dashboardScene = new Scene(loader.load(), 900, 600);
                 Stage stage = (Stage) backToDashboardBtn.getScene().getWindow();
                 stage.setScene(dashboardScene);
