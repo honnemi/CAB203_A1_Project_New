@@ -95,8 +95,15 @@
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <TextField fx:id="usernameField" prefWidth="300.0" promptText="exampleUserName" />
-                        <Button onAction="#handleChangeUsername" text="Change Username" />
+                        <HBox prefHeight="16.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                           <children>
+                               <Label fx:id="usernameText" text="" textOverrun="CLIP">
+                                   <font>
+                                       <Font size="16.0" />
+                                   </font>
+                              </Label>
+                           </children>
+                        </HBox>
 
                         <Label text="Email">
                            <font>
@@ -105,8 +112,8 @@
                            <padding>
                               <Insets top="20.0" />
                            </padding></Label>
-                        <TextField fx:id="emailField" prefWidth="300.0" />
-                        <Button onAction="#handleChangeEmail" text="Update Email" />
+                        <TextField fx:id="emailField" prefWidth="300.0" promptText="" />
+                        <Button fx:id="changeEmailButton" onAction="#handleChangeEmail" text="Update Email" />
 
                         <Label text="Password">
                            <font>
