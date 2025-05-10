@@ -28,33 +28,39 @@ public class QuizTest {
 
     @Test
     public void testGetQuizName() {
+        setUp();
         assertEquals(quizName, quiz.getQuizName());
     }
 
     @Test
     public void testSetQuizName() {
+        setUp();
         quiz.setQuizName(newQuizName);
         assertEquals(newQuizName, quiz.getQuizName());
     }
 
     @Test
     public void testGetTopic() {
+        setUp();
         assertEquals(topic, quiz.getTopic());
     }
 
     @Test
     public void testSetTopic() {
+        setUp();
         quiz.setTopic(newTopic);
         assertEquals(newTopic, quiz.getTopic());
     }
 
     @Test
     public void testGetDifficulty() {
+        setUp();
         assertEquals(difficulty, quiz.getDifficulty());
     }
 
     @Test
     public void testSetDifficulty() {
+        setUp();
         quiz.setDifficulty(newDifficulty);
         assertEquals(newDifficulty, quiz.getDifficulty());
     }
@@ -67,17 +73,20 @@ public class QuizTest {
 
     @Test
     public void testGetQuestions() {
+        setUp();
         assertNotNull(quiz.getQuestions());
     }
 
     @Test
     public void testSetQuestions() {
+        setUp();
         ArrayList<QuizQuestion> questionsList = new ArrayList<>();
         assertEquals(questionsList, quiz.getQuestions());
     }
 
     @Test
     public void testGetQuestion() {
+        setUp();
         QuizQuestion question = new QuizQuestion();
         quiz.addQuestion(question);
         assertNotNull(quiz.getQuestion(0));
@@ -85,6 +94,7 @@ public class QuizTest {
 
     @Test
     public void testAddQuestion() {
+        setUp();
         QuizQuestion question = new QuizQuestion();
         quiz.addQuestion(question);
         assertEquals(question, quiz.getQuestion(0));
@@ -92,6 +102,7 @@ public class QuizTest {
 
     @Test
     public void testSetQuestion() {
+        setUp();
         QuizQuestion question = new QuizQuestion();
         QuizQuestion question2 = new QuizQuestion();
         quiz.addQuestion(question);
@@ -101,11 +112,13 @@ public class QuizTest {
 
     @Test
     public void testGetLengthListEmpty() {
+        setUp();
         assertEquals(0, quiz.getLength());
     }
 
     @Test
     public void testGetLengthListNotEmpty() {
+        setUp();
         QuizQuestion question = new QuizQuestion();
         quiz.addQuestion(question);
         assertEquals(1, quiz.getLength());

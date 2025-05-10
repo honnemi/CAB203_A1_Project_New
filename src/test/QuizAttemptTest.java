@@ -27,12 +27,14 @@ public class QuizAttemptTest {
 
     @Test
     public void testSelectedAnswerCanBeSetAndRetrieved() {
+        setUp();
         attempt.setSelectedAnswer(0, 1);
         assertEquals(1, attempt.getSelectedAnswer(0));
     }
 
     @Test
     public void testAnswerIsCorrect() {
+        setUp();
         attempt.setSelectedAnswer(0, 0); // correct
         attempt.setSelectedAnswer(1, 2); // correct
         assertTrue(attempt.answerIsCorrect(0));
@@ -41,12 +43,14 @@ public class QuizAttemptTest {
 
     @Test
     public void testAnswerIsIncorrect() {
+        setUp();
         attempt.setSelectedAnswer(0, 2); // incorrect
         assertFalse(attempt.answerIsCorrect(0));
     }
 
     @Test
     public void testScoreCalculation() {
+        setUp();
         attempt.setSelectedAnswer(0, 0); // correct
         attempt.setSelectedAnswer(1, 2); // correct
         assertEquals(2, attempt.getScore());
@@ -54,6 +58,7 @@ public class QuizAttemptTest {
 
     @Test
     public void testScorePercentageIsCorrect() {
+        setUp();
         attempt.setSelectedAnswer(0, 0); // correct
         attempt.setSelectedAnswer(1, 1); // incorrect
         assertEquals(50.0, attempt.getScorePercentage());
@@ -61,12 +66,14 @@ public class QuizAttemptTest {
 
     @Test
     public void testAnsweredQuestionsCountUpdates() {
+        setUp();
         attempt.setSelectedAnswer(0, 1);
         assertEquals(1, attempt.answeredQuestionsCount());
     }
 
     @Test
     public void getScorePercentageReturnsZeroWhenNoAnswersSelected() {
+        setUp();
         // No answers selected
         assertEquals(0.0, attempt.getScorePercentage());
     }

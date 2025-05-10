@@ -27,14 +27,17 @@ public class QuizInitConfigTest {
 
     @Test
     public void testGetUploadedFile() {
+        setUp();
         assertEquals(UPLOADEDFILE, quizInitConfig.getUploadedFile());
     }
     @Test
     public void testGetDifficulty() {
+        setUp();
         assertEquals(DIFFICULTY, quizInitConfig.getDifficulty());
     }
     @Test
     public void testGetQuestionRange() {
+        setUp();
         assertEquals(QUESTIONRANGE, quizInitConfig.getQuestionRange());
     }
 
