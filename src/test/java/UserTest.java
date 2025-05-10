@@ -22,40 +22,34 @@ public class UserTest {
 
     @Test
     public void testGetUserName() {
-        setUp();
         assertEquals(USERNAME, user.getUserName());
     }
     @Test
     public void testSetUserName() {
-        setUp();
         user.setUserName(USERNAME2);
         assertEquals(USERNAME2, user.getUserName());
     }
     @Test
     public void testGetPassword() {
-        setUp();
         assertEquals(PASSWORD, user.getPassword());
     }
     @Test
     public void testSetPassword() {
-        setUp();
         user.setPassword(PASSWORD2);
         assertEquals(PASSWORD2, user.getPassword());
     }
     @Test
     public void testGetEmail() {
-        setUp();
         assertEquals(EMAIL, user.getEmail());
     }
     @Test
     public void testSetEmail() {
-        setUp();
         user.setEmail(EMAIL2);
         assertEquals(EMAIL2, user.getEmail());
     }
 
     // failing tests -- functionality not yet implemented in User class
-   /* @Test
+    @Test
     public void testSetUserNameEmpty() {
         assertThrows(IllegalArgumentException.class, () -> user.setUserName(""));
     }
@@ -75,5 +69,4 @@ public class UserTest {
     public void testSetEmailInvalid() { // throw exception if input is not a valid email address
         assertThrows(IllegalArgumentException.class, () -> user.setEmail("invalid email"));
     }
-    */
 }
